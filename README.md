@@ -2,9 +2,9 @@
 
 This is just practice for me uploading to Github and following along with a course. The idea is to update after learning something each lecture to get in the idea of committing more to the page.
 
-# Section 1: Welcome and First Steps
-
 ## CHEATS and QUALITY of Life Codes for Coding
+
+`COMMENTING CHEAT`: Select your text and press `Command + /`
 
 `COMMITTING`:
 
@@ -21,6 +21,8 @@ So then a real life example of this in practice would look like this:
 `control + command + Q`: shortcut that will take you directly to the lock screen.
 
 `option + z`: formats the text if it goes off page when windowed.
+
+# Section 1: Welcome and First Steps
 
 ## The 3 languages of the Front-end
 
@@ -305,7 +307,9 @@ footer p {
 This will select all the `p` elements nested inside the `footer` element and give them their style. This will not effect the other `p` elements in the document.
 
 ### Nested Descendant Selectors
-You can take this another level and add nested descendant selectors. For example. We have the article element and nested inside is a header and inside that header is a p. If we target it like this it will work. 
+
+You can take this another level and add nested descendant selectors. For example. We have the article element and nested inside is a header and inside that header is a p. If we target it like this it will work.
+
 ```
 article header p {
   font-size: 16px
@@ -313,3 +317,37 @@ article header p {
 ```
 
 Works but gets a little crazy if you continue this structure.
+
+## Lecture 4: Class and ID Selectors
+
+This is how we create an ID selector. Inside the p tag you write the attribute id="author".
+
+```
+<p id="author"><p>
+```
+
+When we go inside our CSS sheet this is how we would write it. We use `#` followed by the id name of the selector.
+
+```
+#author {
+  font-style: italic;
+}
+```
+
+### What is the difference between an ID and a Class?
+
+An `ID`'s name can only be used once while a `Class` can be used multiple times. So its important to know an id can only be used once and not multiple times.
+Also the `ID` uses `#` as its selector.
+`Class` uses a `.` as its selector.
+
+### Challenge (remove the bullet points from the listed elements)
+
+How do you remove the bullet points from a list?
+
+```
+ul {
+  list-style: none;
+}
+```
+
+For this challenge only remove the bullet points from the Related Posts section. In the real world we never use ID's. We always use Classes because by using Classes we are prepared for the future.
