@@ -237,13 +237,15 @@ We also use `rel` attribute to say what kind of link this is.
 
 ## Lecture 2: Styling Text
 
-In this section we will learn 6 properties to style CSS.
+In this section we will learn a few properties to style CSS.
 
 1. `font-size: 26px`
-   1. `font-size`: is usually 16px by default until we change it.
+
+   - `font-size`: is usually 16px by default until we change it.
+
 2. `Font-family`: can specify different fonts for your text.
 
-- The funny thing about CSS for other computers is just because you have the font-family connected to your computer, doesn't mean other people will have it on their computer. So we will need to create a link like we did for the style sheet but for fonts.
+- The funny thing about CSS for other computers is just because you have the `font-family` connected to your computer, doesn't mean other people will have it on their computer. So we will need to create a link like we did for the style sheet but for fonts.
 
 4. `text-transform: uppercase`: can turn a text uppercase and other things.
 
@@ -253,8 +255,61 @@ In this section we will learn 6 properties to style CSS.
 
 When we use `p` as the selector it selects all the `p's` in the html document. We can actually specify a new property so the lines don't look so mushed together. This is called `Line-height`.
 
-6. `line-height: 1.5;`: this value means that the line height will be 1.5 times the font size. By default it is set to `1`.
+6. `line-height: 1.5;`: this value means that the line height will be 1.5 times the font size (1.5 x Font-size).By default it is set to `1`.
+
+   Ex.
+
+   ```
+   p {
+     line-height: 1.5;
+   }
+   ```
 
 7. `text-align`: can change where the text is placed.
+   Ex.
+
+```
+
+h1 {
+text-align: center;
+}
+
+```
 
 8. `inheritance`: will come back to later.
+
+## Lecture 3: Combining Selectors
+
+When we have selectors that have the same properties we can combine them into one selector list.
+
+### Selector List
+
+```
+h1, h2, h3, p, li {
+  font-family; sans-serif;
+}
+```
+
+Once you have them combined into a list, you can remove them from their main CSS selectors.
+
+Here is another way to combine selectors.
+
+### Descendant Selector
+
+```
+footer p {
+  font-size: 16px;
+}
+```
+
+This will select all the `p` elements nested inside the `footer` element and give them their style. This will not effect the other `p` elements in the document.
+
+### Nested Descendant Selectors
+You can take this another level and add nested descendant selectors. For example. We have the article element and nested inside is a header and inside that header is a p. If we target it like this it will work. 
+```
+article header p {
+  font-size: 16px
+}
+```
+
+Works but gets a little crazy if you continue this structure.
