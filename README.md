@@ -492,3 +492,64 @@ article p:first-child {
 This would not work. Because in our example p is not the first element in our article element. It is actually second. So pseudo classes will only work if the conditions are correct. Try it again by making a p the first element. Therefore now our selector applies.
 
 When we mix multiple elements inside of a parent element, then the pseudo classes don't work really well. However they are perfect when all the child elements are the same. Like in a `<ol>` and `<ul>`.
+
+## Lecture 7: Styling Hyperlinks /w Pseudo Classes
+
+### :link
+
+Let's style the `:link` pseudo class
+
+```
+a:link {
+  color: #1098ad;
+}
+```
+
+This one only targets actual links.
+
+### text-decoration
+
+gets rid of the lines underneath the link
+
+```
+a:link {
+  color: #1098ad;
+  text-decoration: none;
+}
+```
+
+### :visited
+
+Normally we keep `:link` and `:visited` grouped up in our CSS rule sheet, but for this example we will keep them apart. Generally we keep the `:visited` link color the same as the `:link`.
+
+```
+a:visited {
+color: #1098ad
+}
+```
+
+### :hover (this one is one of the most important)
+
+With text-decoration we can change its: `line, style, color, and text-thickness`.
+
+```
+a:hover {
+  text-decoration: underline wavy orangered;
+}
+```
+
+### :Active (the state of actually clicking a link)
+
+```
+a:active {
+  background-color: black;
+  font-style: italic;
+}
+```
+
+Now when you click on the link this is what it will do.
+
+### L.V.H.A: Link, Visited, Hover, Active
+
+Good way to remember the state of links is `L.V.H.A`
+They are also defined in this order.
