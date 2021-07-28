@@ -574,3 +574,97 @@ Inside the `Dev Tools` there is a `Styles` section. Within that section they hav
 You can toggle these states for an element and it will reflect that on the page without having to actually interact with the element with your mouse. For example, we used `:active` on the `force state` and when we looked at the link on the page it was showing the active link as if it was clicked.
 
 It is a good idea to play around with these states to get more familiar with the `Dev Tools`.
+
+## Lecture 9: CSS Theory #1: Conflicts between Selectors
+
+This section contains 5 theories.
+
+### Conflicting Selectors and Declarations
+
+```
+<p id="author-text" class="author">
+    Posted by <strong>Laura Jones</strong> on Monday, June 21st 2027
+</p>
+```
+
+```
+.author {
+  font-style: italic;
+  font-size: 18px;
+}
+
+#author-text {
+  font-size: 20px;
+}
+p, li {
+  font-family: sans-serif;
+  color: #444444
+  font-size: 22px;
+}
+```
+
+In this case, there are multiple selectors selecting the same element. Which one of them applies?
+
+All rules and properties are applied. But we can see there are conflicting font-size declarations! Is it 18px, 20px, or 22px?
+Let's see how it works.
+
+When there are multiple declarations for the same selectors.
+
+### Resolving Conflicting Declarations
+
+`IDs (#) > Class (.) or Pseudo-class (:) > element selectors`
+
+1. `ID (#) Selector`: if there are multiple, then the last selector in code applies.
+   - ID's have the highest priority
+2. `Class (.) or pseudo-class (:) selector` and if there are multiple the last selector in code applies.
+   - these have second priority
+3. `Element selector (p, div, li, etc.)`: if there are no classes or pseudo class selectors
+4. Universal selector (lowest priority of them all)
+
+`FOR THE CONFLICTING FONT-SIZE PROPERTY` So the answer to who takes precedence for this situation it is the ID selector that applies.
+
+### Another note on conflicting declarations
+
+Another note on this. Declarations marked (!important)and Inline-style (style attribute in HTML) have a higher priority than ID selectors. We never use !important or inline-style anyways, but this is good to know just in case:
+
+`Declarations marked (important) > Inline-style > IDs (#) > Class (.) or Pseudo-class (:) > element selectors`
+
+### We can add multiple classes to the same element
+
+```
+<p class="author time">
+```
+
+Just put a space in between the classes.
+Back to resolving conflicts we see when we hover over the selectors what priority they have:
+
+```
+#copyright {
+  color: red;
+}
+(Selector specificity (1,0,0))
+.copyright {
+  color: blue;
+}
+(Selector specificity (0,1,0))
+.text {
+  color: yellow;
+}
+(Selector specificity (0,1,0))
+footer p {
+  color: green;
+}
+(Selector specificity (0,0,2))
+```
+
+If we turned off the ID selector, which would take next priority? The `text` class would because it was applied after the other.
+
+If we use
+
+```
+footer p {
+  color: green !important;
+}
+```
+
+This will be what is shown on the page. Since !important is highest priority. We don't use this though.
