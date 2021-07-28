@@ -2,8 +2,9 @@
 
 This is just practice for me uploading to Github and following along with a course. The idea is to update after learning something each lecture to get in the idea of committing more to the page.
 
-## CHEATS and QUALITY of Life Codes for Coding
+# CHEATS and QUALITY of Life Codes for Coding
 
+`Option + Command + i`: Opens dev tools
 `COMMENTING CHEAT`: Select your text and press `Command + /`
 
 `COMMITTING`:
@@ -553,3 +554,23 @@ Now when you click on the link this is what it will do.
 
 Good way to remember the state of links is `L.V.H.A`
 They are also defined in this order.
+
+## Lecture 8: Using Chrome DevTools
+
+Currently there are 3 ways to open `Dev Tools`
+
+- right click anywhere on page > `inspect tools`
+- go to `view` > `developer` > `developer tools`
+- or simply `option + command + i`
+
+Inside `Dev Tools` we can pretty much see all the HTML we have produced on the page. It also shows us when we click on an element the styles it has and much more.
+
+We can also add more styles for practice to the element and it won't mess with the real code. All you have to do is refresh the page and it's gone.
+
+### Styles [Force Element State]
+
+Inside the `Dev Tools` there is a `Styles` section. Within that section they have an option called `Force Element State`. Within this state they have options for forcing: `:active, :focus, :focus-within, :target, :hover, :visited, :focus-visible`
+
+You can toggle these states for an element and it will reflect that on the page without having to actually interact with the element with your mouse. For example, we used `:active` on the `force state` and when we looked at the link on the page it was showing the active link as if it was clicked.
+
+It is a good idea to play around with these states to get more familiar with the `Dev Tools`.
