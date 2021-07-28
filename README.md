@@ -4,10 +4,15 @@ This is just practice for me uploading to Github and following along with a cour
 
 # CHEATS and QUALITY of Life Codes for Coding
 
+## COMPUTER COMMANDS for Mac
+
+`control + command + Q`: shortcut that will take you directly to the lock screen.
+`option + z`: formats the text if it goes off page when windowed.
+`Command + Shift + V`: Opens Markdown Preview for note taking (press this when on note side).
 `Option + Command + i`: Opens dev tools
 `COMMENTING CHEAT`: Select your text and press `Command + /`
 
-`COMMITTING`:
+## Commits
 
 Chase says to check out the conventional commits webpage. But for general usage when committing we can write the following:
 
@@ -16,12 +21,6 @@ Chase says to check out the conventional commits webpage. But for general usage 
 So then a real life example of this in practice would look like this:
 
 `git commit -m "prog(index.html) added basic structure of webpage"`
-
-`COMPUTER COMMANDS for Mac`
-
-`control + command + Q`: shortcut that will take you directly to the lock screen.
-
-`option + z`: formats the text if it goes off page when windowed.
 
 # Section 1: Welcome and First Steps
 
@@ -668,3 +667,42 @@ footer p {
 ```
 
 This will be what is shown on the page. Since !important is highest priority. We don't use this though.
+
+## Lecture 10: CSS Theory #2: Inheritance and the Universal Selector
+
+### Body and Inheritance
+
+`<body>` is the main parent for the HTML document.
+`Inheritance`: is the mechanism by which some styles so some properties get their values inherited from parent elements to child elements. - they have the lowest priority.
+
+<img src="noteImg/inherited.png">
+
+This is why we use the technique of putting these properties that are related to text to the body, okay? Because these are the ones that we then want all of the elements on the page to have.
+
+```
+body {
+  color: #444;
+  font-size: 16px;
+  font-family: sans-serif;
+
+  border-top: 10px solid blue;
+}
+```
+
+In this example elements would inherit: `color, font-size, and font-family` because they are related to text. `Border-top` would not because it is not related to text.
+
+### Properties that are related to text and get inheritance
+
+`font-family, font-size, font-weight, font-style, color, line-height, letter-spacing, text-align, text-transform, text-shadow, list-style, etc.
+
+### Universal Selector
+
+`*`: This is the sign for a universal selector. When we want a certain property applied to all elements but for them not to be inherited. This has the lowest priority.
+
+```
+* {
+  border-top: 10px solid blue;
+}
+```
+
+This would apply a border-top to all elements, but yeah we wouldn't want to do that lol.
