@@ -4,13 +4,19 @@ h3,
 p,
 li {
   font-family: sans-serif;
+  color: #444;
 }
+
 h1 {
   font-size: 26px;
   font-style: italic;
   text-transform: uppercase;
 }
-
+h1,
+h2,
+h3 {
+  color: #1098ad;
+}
 h2 {
   font-size: 40px;
 }
@@ -34,6 +40,9 @@ li {
   font-size: 20px;
 }
 
+.main-header {
+  background-color: #f7f7f7;
+}
 /* footer p {
   font-size: 16px;
 } */
@@ -52,6 +61,31 @@ li {
   font-weight: bold;
 }
 
-#related-posts {
+.related {
   list-style: none;
+}
+
+aside {
+  background-color: #f7f7f7;
+  border-top: 5px solid #1098ad;
+  border-bottom: 5px solid #1098ad;
+}
+
+/* .first-li {
+  font-weight: bold;
+} */
+
+li:first-child {
+  font-weight: bold;
+}
+li:last-child {
+  font-style: italic;
+}
+
+li:nth-child(even) {
+  /* color: red; */
+}
+
+article p:last-child {
+  color: red;
 }

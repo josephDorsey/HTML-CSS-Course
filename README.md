@@ -340,6 +340,16 @@ An `ID`'s name can only be used once while a `Class` can be used multiple times.
 Also the `ID` uses `#` as its selector.
 `Class` uses a `.` as its selector.
 
+### Element selector
+
+When you basically use the name of the element to select it in CSS like this
+
+```
+aside {
+  color: blue;
+}
+```
+
 ### Challenge (remove the bullet points from the listed elements)
 
 How do you remove the bullet points from a list?
@@ -351,3 +361,134 @@ ul {
 ```
 
 For this challenge only remove the bullet points from the Related Posts section. In the real world we never use ID's. We always use Classes because by using Classes we are prepared for the future.
+
+## Lecture 5: Working with Colors
+
+### Color Theory
+
+`RBG Model`: Every color can be represented by a combination of RED, GREEN, BLUE.
+Each of the 3 base colors can take a value between 0 and 255, which leads to 16.8 million different colors.
+
+### Two ways of defining colors in CSS
+
+1. RGB/RGBA Notation: this is how we would write out rgb/rgba notation in css. rgb(a) the `a` stands for alpha. Meaning we can use that value to change the transparency of an item when included.
+
+```
+rgb(0,255,255)
+
+RGB with transparency ("alpha");
+rgba(0,255,255,0.3 )
+
+```
+
+- These two rgb notations are the same, but the one with the alpha has a 0.3 so that means the color is a little brighter.
+
+2. Hexadecimal Notation
+   Instead of using a scale from 0 to 255, we go from 0 to ff (255 in hexadecimal numbers).
+   #00fffff
+
+Shorthand, when all colors are identical pairs
+In practice we mostly use `hexadecimal` colors, and `rgba` when we need transparency.
+
+### Shades of Grey
+
+When colors in all 3 channels are the same, we get a `grey color`
+There are 256 pure grays to choose from
+
+```
+rgb (0,0,0) / #000000 / #000
+rgb (69,69,69) /#444444 / #444 (this is great for text color)
+rgb (183,183,183) / #b7b7b7
+rgb (255,255,255) / #ffffff / #fff
+```
+
+### Background color
+
+```
+header {
+  background-color: #f7f7f7;
+}
+```
+
+### Borders
+
+What we want to do is add some border to the related posts section. At the bottom and top a blue border.
+
+```
+aside {
+  background-color: #f7f7f7;
+  border: 5px solid #1098ad;
+}
+```
+
+- This does apply the border, but it also applies the border to the left and right which we don't want. Here are some different variants of the border property.
+
+### Special variants of Border
+
+`Border-top`: applies border to top;
+`Border-bottom`: applies border to bottom;
+`Border-left`: applies border to left;
+`Border-right`: applies border to right;
+
+```
+border-top: 5px solid #1098ad;
+border-bottom: 5px solid #1098ad;
+```
+
+## Lecture 6: Pseudo-classes
+
+In the example he wants to make the first li element bold for both of the lists. He offered a first way of adding classes to the first elements in these lists manually:
+
+```
+  <li class="first-li">
+```
+
+And this of course works. But there is also a better way to do this instead of doing this manually and let CSS figure this out automatically for us. This is with the usage of `pseudo-classes`.
+
+### :first-child
+
+A pseudo class we can use `:first-child`. And this basically changes our selector here and adds a `li:first-child` (pseudo class) to it. What `:first-child` does it that it will select all li elements that are the first-child elements of its parent elements.
+
+```
+li:first-child {
+  font-weight: bold;
+}
+```
+
+### :last-child
+
+The same also works for `:last-child` It selects the last element of its parent element.
+
+```
+li:last-child {
+  font-style: italic;
+}
+```
+
+### :nth-child(n)
+
+What about if we wanted to select the 2nd, 3rd of middle element?
+
+So here we use `:nth-child(n)`. Inside the parenthesis we put the child element that we want to select.
+
+```
+li:nth-child(2) {
+  font-size: 23px;
+}
+```
+
+We can also use keywords inside the parenthesis. We can type out `nth:child(odd)` and it will select the odd elements. Same works for `nth:child(even)`
+
+### Common misconceptions with pseudo-classes
+
+If we were to try to change the color of articles first p element and wrote it like this:
+
+```
+article p:first-child {
+  color: red;
+}
+```
+
+This would not work. Because in our example p is not the first element in our article element. It is actually second. So pseudo classes will only work if the conditions are correct. Try it again by making a p the first element. Therefore now our selector applies.
+
+When we mix multiple elements inside of a parent element, then the pseudo classes don't work really well. However they are perfect when all the child elements are the same. Like in a `<ol>` and `<ul>`.
