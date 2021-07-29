@@ -673,7 +673,9 @@ This will be what is shown on the page. Since !important is highest priority. We
 ### Body and Inheritance
 
 `<body>` is the main parent for the HTML document.
-`Inheritance`: is the mechanism by which some styles so some properties get their values inherited from parent elements to child elements. - they have the lowest priority.
+`Inheritance`: is the mechanism by which some styles so some properties get their values inherited from parent elements to child elements
+
+- they have the lowest priority.
 
 <img src="noteImg/inherited.png">
 
@@ -705,4 +707,28 @@ In this example elements would inherit: `color, font-size, and font-family` beca
 }
 ```
 
-This would apply a border-top to all elements, but yeah we wouldn't want to do that lol.
+This would apply a `border-top` to all elements, but yeah we wouldn't want to do that lol.
+
+## Lecture 11: Challenge #1
+
+We are building on the `Converse Chuck Taylor All Star Low Top` webpage that we built on `codepen.io`. Also for a bonus, we could do the same for the `Spooky Halloween page`.
+
+### What did you miss in the challenge?
+
+#### :active and :visited to the link
+
+1. Forgot to add the :active, and :visited states to the link
+
+#### cursor property
+
+2. He didn't teach us yet, but a property that was used for button portion of the video is called `cursor`.
+
+```
+cursor: pointer;
+```
+
+This makes it so a little hand instead of a mouse click appears when you move over the button.
+
+#### Classes vs. Pseudo-classes
+
+He used `class` for most of his elements, where as I used `pseudo-class` for article. He said as long as it looks the same it doesn't matter how we got it. I will look more to adding classes to regular elements. And using pseudo classes more for the `ul`/`ol` elements that have similar child elements.
