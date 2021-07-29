@@ -732,3 +732,42 @@ This makes it so a little hand instead of a mouse click appears when you move ov
 #### Classes vs. Pseudo-classes
 
 He used `class` for most of his elements, where as I used `pseudo-class` for article. He said as long as it looks the same it doesn't matter how we got it. I will look more to adding classes to regular elements. And using pseudo classes more for the `ul`/`ol` elements that have similar child elements.
+
+## Lecture 12: CSS Theory #3: The CSS Box Model (Most fundamental part of CSS)
+
+### What is the CSS Box Model?
+
+These are several components that make up the Box Model:
+<img src="noteImg/boxModel.png">
+
+`content`: text, images, etc. Using `CSS properties` we can specify the height and the width of the content area.
+`border`: a line around the element, still <strong>inside</strong> of the element.
+`padding`: invisible space around the content, <strong>inside</strong> of the element.
+`margin`: Space <strong>outside</strong> of the element, between elements.
+`Fill area`: Area that gets filled with `background-color` or `background-image`.
+
+All of these are optional. We don't have to specify paddings or a border or margins. So we can define none of them or some, or even all of them. It all depends on how we want our layout to look like.
+
+### Analogy for the CSS Box Model
+
+<img src="noteImg/analogyCSSBox.png">
+
+`Content`: Imagine a frame on the wall. In this analogy, the drawing or the image that is in the frame is the content area.
+
+`Padding`: Then, many frames actually have this kind of white paper between the drawing or the image and the actual frame itself. The space between the content area and the border (this would be the padding).
+
+`Border`: In this analogy, the frame is of course the border
+
+`Margin`: when we hang the picture on the wall using a frame like this, then of course there might be some space between other elements on the wall or even some other walls on the sides. In the box model this would be margin.
+
+### Element Height and Width Calculation
+
+`Final element width` = left border + left padding + width + right padding + right border
+
+`Final element height` = top border + top padding + height + bottom padding + bottom border
+
+Margin does not account for this. It is just the space around them.
+
+👉 We can specify all these values using CSS properties.
+👉 This is the `default behavior`, but we can change it
+
