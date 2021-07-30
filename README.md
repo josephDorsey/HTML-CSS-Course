@@ -771,3 +771,94 @@ Margin does not account for this. It is just the space around them.
 👉 We can specify all these values using CSS properties.
 👉 This is the `default behavior`, but we can change it
 
+## Lecture 13: Using Margins and Paddings
+
+Let's start applying the box model in practice. We can start with padding. A perfect candidate for that in our example is the header element that has background-color. Which can always use some padding in order to create some space between the content and the outside of the element.
+
+When inspecting the main-header in dev tools. The orange outline is the `margin` around the element. The green space around the header is the `padding`.
+
+### How to use different paddings (Shorthand)
+
+Let's apply some padding to the .main-header. For example:
+
+```
+.main-header {
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+```
+
+Another way this could be written is:
+
+```
+padding: 20px 40px;
+```
+
+Using this example is an of `shorthand`. The `20px` is the `top + bottom`. The 40px is the `left + right`.
+
+For our next example we will fix the li elements. Notice how they are close to eachother? Let's add some margin to the bottom.
+
+```
+li {
+
+margin-bottom: 10px;
+}
+```
+
+This works perfectly but we dont want the last li to have that space between it and the next information on the page. Using this will nullify the margin-bottom:
+
+```
+li:last-child {
+margin-bottom: 0;
+
+}
+```
+
+Whenever we use 0 we do not specify any unit. We just say 0 and that will override it.
+
+### Global reset
+
+Notice how there are a lot of spaces? There are a slot of default margins and paddings. How do you think we can set them all to 0? We need to use the universal selector.
+
+```
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+
+Doing global reset is extremely common. So this is usually the first thing we should do whenever we start any new project. Keep in mind that this is extremely easy to overwrite. So every other selector will actually overwrite this universal selector.
+
+It is most common to use mostly space at the bottom of an element in order to create vertical space.
+After applying the universal selector now we can style the page how we want. Notice how the h2 element and the header are too close to each other? It looks bad lets fix it.
+
+```
+.main-header {
+  background-color: #f7f7f7;
+  padding: 20px 40px;
+  margin-bottom: 60px;
+}
+```
+
+### The spacing on the ol/ul elements
+
+Notice how after we removed the margin how they stick super close to the page and their bullet points and numbers are gone? We simply need to add `margin-left` to them.
+
+```
+ol, ul {
+  margin-left: 50px;
+}
+```
+
+### Collapsing Margins
+
+our h3 and the link look like the space between them is exactly the same and we don't want that.
+
+This is when we have two margins that occupied the same space, only one of them is actually visible on the page. And that is usually the larger of the two.
+
+### Quick Re-cap
+
+Whenever you need some space inside of an element, which is very useful, mostly when there is a `background color` or a `border` on the element, then you always use `padding`.
+
+On the other hand, in order to create space outside of an element, or also to create some space between multiple elements, always use `margin`. And in that case if you need to add `vertical space` then I advise you to most of the time stick to `margin-bottom`.
