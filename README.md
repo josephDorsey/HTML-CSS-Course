@@ -910,3 +910,46 @@ So if I give this image a width of 100% then this image should be the width of t
 So even if we adjust the page, the image will stay at `100%` because that is always the size of its parent container.
 
 Same works for other values. If we tried `50%` it would still only take up `50%` of its `parent container`.
+
+## Lecture 15: Centering our Page
+
+We can center our information using a very simple trick. But first we need to put all of our content into a container element because otherwise, if we dont do that, then what is there actually to center in the window?
+
+So first we need a container and that container needs a certain width. So let's put all of this into a box and this box doesnt need to have any special meaning. What do we use?
+
+### Div
+
+start the `<div>` as the first parent container of the body element and end the `</div>` right before the end of the body.
+Now lets give it the container a class name:
+
+```
+<div class="container">
+```
+
+### Part 1: First we give the container a width
+
+So when we give `.container` a width of 700px. The child elements all become 700px. They can only be as large as the container elment.
+
+### Part 2: We add some margins to left/right of container
+
+So we can say `margin-left: auto;` and `margin-right: auto;`
+
+```
+.container {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+This means is that the margin on the left needs to be the same as the margin on the right side. And they should both be calculated automatically by the browser. Therefore it will mean that there will be a margin on the left and on the right which will be exactly the same size. The container will look centered inside of the body.
+
+### Margin Shorthand
+
+```
+  margin: 0 auto;
+```
+
+The first value is: `top + bottom`.
+The second value is: `left + right`.
+So the margin at the top and bottom right now is `0` and left and right is `auto`. So now we can get rid of `margin-left: auto;` and `margin-right: auto;`
