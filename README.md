@@ -862,3 +862,51 @@ This is when we have two margins that occupied the same space, only one of them 
 Whenever you need some space inside of an element, which is very useful, mostly when there is a `background color` or a `border` on the element, then you always use `padding`.
 
 On the other hand, in order to create space outside of an element, or also to create some space between multiple elements, always use `margin`. And in that case if you need to add `vertical space` then I advise you to most of the time stick to `margin-bottom`.
+
+## Lecture 14: Adding Dimensions
+
+Let's start with our `<aside></aside>` element, which will eventually be our side bar. Lets specify the width as `500px`.
+
+```
+aside {
+  width: 500px;
+}
+```
+
+### Height and HTML vs Height and CSS
+
+It is very common to size images in `CSS` and not in the `HTML` like we did. Actually many times, we never even specify the width of images in `HTML` but only in `CSS`.
+
+In case we do have the height specified in `HTML`, what we need to do is to then set the `height` to `auto`. This will then fix it and will put the aspect ratio back to the original.
+
+```
+.post-image {
+  width: 800px;
+  height: auto;
+}
+```
+
+But again, specifying the `height` and setting it to auto is only necessary if that `height` is already specified before in `HTML`.
+
+### Using Percentages
+
+Let's actually move away from `pixels` for the first time and use `percentages`. So I can say the width like this:
+
+```
+.post-image {
+  width: 100%;
+  height: auto;
+}
+```
+
+Usually for a width measurement like this, the percentage is usually the percentage of the width of the `parent container`.
+
+So the parent of the post image is the header and this header is basically the entire width of the page right?
+
+So if I give this image a width of 100% then this image should be the width of the entire page.
+
+### What happens if we resize the page?
+
+So even if we adjust the page, the image will stay at `100%` because that is always the size of its parent container.
+
+Same works for other values. If we tried `50%` it would still only take up `50%` of its `parent container`.
