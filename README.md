@@ -953,3 +953,29 @@ This means is that the margin on the left needs to be the same as the margin on 
 The first value is: `top + bottom`.
 The second value is: `left + right`.
 So the margin at the top and bottom right now is `0` and left and right is `auto`. So now we can get rid of `margin-left: auto;` and `margin-right: auto;`
+
+## Lecture 16: Challenge #2
+
+1. Change the converse page to `centered`. ✅
+
+- forgot to add `margin: 50px 0;` to the container since it was glued to the top of the page.
+
+2. It's article container `element` is `825 pixels` give it that width. ✅
+
+3. Next you can see that many `margins` and `paddings` have been removed and so that probably means have been removed and so that probably means that there has been some `global reset` here. Add one. ✅
+
+```
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+
+But then of course keep adding back some `paddings` and some `margins` ✅
+
+4. The button now is really wide. Make it expand to the other side. It also has a `border` at the top. 
+  - Made the buttons `width: 100%` of its container, and added a `border-top: 4px solid black;`✅
+
+5. Why can't I add margin-bottom to the `<a>` link? ✅
+
+I KNEW IT!!! I DID IT CORRECTLY. WE cannot use margins on small elements like anchors, like this link. So we had to add margin-top instead to the element after to get the same effect.

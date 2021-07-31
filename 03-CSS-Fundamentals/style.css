@@ -21,6 +21,7 @@ body {
   margin-bottom: 60px;
   height: 80px;
 }
+
 nav {
   font-size: 18px;
 }
@@ -119,10 +120,6 @@ li:first-child {
 }
 li:last-child {
   font-style: italic;
-}
-
-li:nth-child(even) {
-  /* color: red; */
 }
 
 /* Misconception: this won't work! */
