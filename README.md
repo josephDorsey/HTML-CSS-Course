@@ -973,9 +973,189 @@ So the margin at the top and bottom right now is `0` and left and right is `auto
 
 But then of course keep adding back some `paddings` and some `margins` ✅
 
-4. The button now is really wide. Make it expand to the other side. It also has a `border` at the top. 
-  - Made the buttons `width: 100%` of its container, and added a `border-top: 4px solid black;`✅
+4. The button now is really wide. Make it expand to the other side. It also has a `border` at the top.
+
+- Made the buttons `width: 100%` of its container, and added a `border-top: 4px solid black;`✅
 
 5. Why can't I add margin-bottom to the `<a>` link? ✅
 
 I KNEW IT!!! I DID IT CORRECTLY. WE cannot use margins on small elements like anchors, like this link. So we had to add margin-top instead to the element after to get the same effect.
+
+## Lecture 17: CSS Theory #4: Types of Boxes
+
+<img src="noteImg/Screen Shot 2021-07-31 at 11.29.23 AM.png">
+Notice how our h2 element and article and header occupy all the space that it can occupy, basically going from left to right?
+
+There are also other elements. So other boxes so to say, like this one. When we inspect the `<strong>Laura Jones</strong>` the box only encapsulates the space where its content actually is. The same can be said for the img it only takes up its 50x50 pixels, which is the exact size of the content itself.
+
+These types of boxes that only occupy exactly the space that they need for its content is what we call `inline-boxes`, and on the other hand, all these other boxes, for example the paragraph or h3 heading. These are called block-level boxes or block-level elements.
+Block-level elements or boxes occupy all the space that they can, and they basically create line breaks after them. In other words, they cannot be side-by-side with one another right?
+
+### Block-Level Elements
+
+<img src="noteImg/Screen Shot 2021-08-02 at 8.47.49 AM.png">
+<ul style="list-style: none;">
+<li>👉 Elements are formatted visually as blocks</li>
+<li>👉 Elements occupy <strong>100% of parent element's width, no matter the content</strong></li>
+<li>👉 Elements are <strong>stacked vertically</strong> by default, one after another.</li>
+<li>👉 The box-model applies as showed earlier.</li>
+</ul>
+<strong>Default elements:</strong> body, main, header, footer, section, nav, aside, div, h1-h6, p, ul, ol, li, etc.
+
+<strong>With CSS:</strong> display: block;
+
+### Inline elements
+
+<img src="noteImg/Screen Shot 2021-08-02 at 8.48.30 AM.png">
+<ul>
+  <li>👉 Occupies only the space necessary for its content</li>
+  <li>👉 Causes no line-breaks after or before the element</li>
+  <li>👉 Box model applies in a different way: heights and widths do not apply</li>
+  <li>👉 Paddings and margins are applied only horizontally (left and right)</li>
+</ul>
+
+```
+Default elements:
+a, img, strong, em, button, etc.
+```
+
+```
+With CSS:
+display: inline;
+```
+
+#### Code example:
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.01.43 AM.png">
+
+For example if we added margin to this inline element it only goes horizontally (left and right).
+
+```
+nav a:link {
+  background-color: orangered;
+  margin: 40px;
+}
+```
+
+The same is true for padding.
+
+```
+nav a:link {
+  background-color: orangered;
+  margin: 40px;
+  padding: 30px;
+}
+```
+
+#### Padding example
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.01.54 AM.png">
+With padding it fills the inside space making it look like it expanded vertically but this is not correct
+
+### So what do we do if we need to add vertical space to an inline element?
+
+We can give it a `display: block;`. This now renders the inline element as a block element.
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.02.13 AM.png">
+
+Now they actually have vertical margins between them.
+But now we have this issue where they extend outside of the header element. This is because our header element is fixed to a height.
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.09.18 AM.png">
+
+Let's comment it out:
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.09.38 AM.png">
+
+If we comment it out then it should look like this:
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.09.58 AM.png">
+
+So this is the reason why usually we don't set a fixed height on elements. The element expanded vertically here to account for the additional space that is required. But the main point here is that these anchors elements here now do satisfy all the conditions of being a block-level element.
+
+So the box model applies to them normally, and they occupy 100% of the available width and so therefore they appear one after another nicely formatted as blocks.
+
+### What happens if we make list elements as inline?
+
+Let's test this on our li element: Here's what they looked like before we added the inline display.
+<img src="noteImg/Screen Shot 2021-08-02 at 11.45.18 AM.png">
+
+Now let's add our display change to inline and see what happens.
+
+```
+display: inline;
+```
+
+<img src="noteImg/Screen Shot 2021-08-02 at 9.40.22 AM.png">
+
+And now you see these three elements are now basically side-by-side and occupy only the space that they need.
+
+### Inline-Block Boxes
+
+Combines the best parts of block-level boxes and inline boxes.
+
+```
+display: inline-block;
+```
+
+<ul style="list-style: none;">
+<li>👉 Looks like inline from the outside, behaves like block-level on the inside.</li>
+<li>👉 Occupies only content's space</li>
+<li>👉 Causes no line-break</li>
+<li>👉 Box-model applies as showed</li>
+
+</ul>
+Let's try out some situations where this can be extremely helpful.
+
+```
+nav a:link {
+  margin-right: 30px;
+  margin-top: 10px;
+}
+```
+
+The `margin-top` is not applied because this is an `inline element`. However if we change it to an `inline-block`. The `margin-top` will be added.
+
+### Chaining pseudo-classes (Modern ways of doing this same technique)
+
+We want to remove the `margin-right` from the last link element. Here's a cool way to do it.
+
+```
+nav a:link:last-child {
+  margin-right: 0;
+}
+```
+
+Now when we inspect in the dev tools the last one no longer has dead space on the right side and many times that's important to do.
+
+### Images are inline elements that behave like inline-block boxes
+
+In the beginning we said that images are actually inline elements, but in fact, they do behave like in-line block elements and we can easily demonstrate this by adding some margin.
+If this image was an inline element, it should not create any vertical space.
+
+#### Image Inline Example
+
+<img src="noteImg/imageInlineEx.png">
+
+But watch what happens as we save the change after we add 100px margin.
+
+#### Image acting like Inline-block Example
+
+<img src="noteImg/Screen Shot 2021-08-02 at 10.57.38 AM.png">
+
+See? This kinda helps show that images act like inline-blocks because the 100px margins got added and vertical space was created.
+
+The same can be said for the `height` and `width` for this element. If it was purely inline element, then these two here would also not work. This is important to note.
+
+### Lecture Summary
+
+Just as a quick summary or basically as a takeaway from this lecture, most of the time we will actually leave
+the `display` setting alone and simply use the predefined box type because by default, they do actually make a lot of sense.
+
+We can use `display set to block` in order to make a small inline element, for example, occupy an entire line, which is something that we will sometimes need in the real world.
+
+Then the other way around,sometimes we don't want a `block-level element` to push all the other elements into a new line.
+
+So basically we don't always want them to occupy all the available blank space that there is to fill.
+
+And so in that case, we can set them to an inline element or probably even more useful, we can set them to an inline-block element because then we can still apply the box model as usual.

@@ -3,23 +3,24 @@
   margin: 0;
   padding: 0;
 }
+/* Page Sections */
 body {
   color: #444;
   font-family: sans-serif;
   border-top: 10px solid #1098ad;
 }
-.container {
+/* .container {
   width: 800px;
-  /* margin-left: auto;
-  margin-right: auto; */
+  margin-left: auto;
+  margin-right: auto;
   margin: 0 auto;
-}
+} */
 
 .main-header {
   background-color: #f7f7f7;
   padding: 20px 40px;
   margin-bottom: 60px;
-  height: 80px;
+  /* height: 80px; */
 }
 
 nav {
@@ -39,7 +40,7 @@ aside {
   padding: 50px 0;
   width: 500px;
 }
-
+/* Smaller Elements */
 h1,
 h2,
 h3 {
@@ -79,10 +80,13 @@ ol {
   margin-left: 50px;
   margin-bottom: 20px;
 }
+
 li {
   font-size: 20px;
   margin-bottom: 10px;
+  /* display: inline; */
 }
+
 li:last-child {
   margin-bottom: 0;
 }
@@ -92,6 +96,7 @@ li:last-child {
 .post-image {
   width: 100%;
   height: auto;
+  /* margin: 100px; */
 }
 #author {
   font-style: italic;
@@ -159,3 +164,17 @@ a:active {
 footer p {
   color: green;
 } */
+
+nav a:link {
+  /* background-color: orangered;
+  margin: 40px;
+  padding: 20px;
+  display: block; */
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+nav a:link:last-child {
+  margin-right: 0;
+}
