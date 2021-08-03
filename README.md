@@ -1141,7 +1141,7 @@ But watch what happens as we save the change after we add 100px margin.
 
 #### Image acting like Inline-block Example
 
-<img src="noteImg/Screen Shot 2021-08-02 at 10.57.38 AM.png">
+<img src="noteImg/marginInlineEx.png">
 
 See? This kinda helps show that images act like inline-blocks because the 100px margins got added and vertical space was created.
 
@@ -1159,3 +1159,124 @@ Then the other way around,sometimes we don't want a `block-level element` to pus
 So basically we don't always want them to occupy all the available blank space that there is to fill.
 
 And so in that case, we can set them to an inline element or probably even more useful, we can set them to an inline-block element because then we can still apply the box model as usual.
+
+## Lecture 18: CSS Theory #5: Absolute Positioning
+
+### Normal Flow and Absolute positioning
+
+#### Normal Flow
+
+<ul>
+  <li>Default positioning</li>
+  <li>Element is "<strong>in</strong> flow"</li>
+  <li>Element are simply laid out according to their order in the HTML code</li>
+</ul>
+<strong>Default positioning</strong>: `position: relative`
+This is simply the behavior that we have been seeing up until this point.
+
+#### Absolute positioning
+
+This basically allows us to absolutely position elements anywhere on the page. Now we can achieve this positioning mode by setting it's position property to the value of absolute.
+
+```
+position: absolute;
+```
+
+<ul>
+<li>Element is removed from the normal flow: "<strong>out of</strong> flow"</li>
+<li>No impact on surrounding elements, might overlap them</li>
+<li>We use top, bottom, left, or right to offset the element from its <strong>relatively positioned container</strong></li>
+</ul>
+
+### In practice
+
+In this portion we are going to create a like button that is located outside of our centered container.
+First create the button in html.
+
+```
+<button>❤️ Like</button>
+```
+
+Then style it in CSS
+
+```
+button {
+  cursor: pointer;
+  font-size: 22px;
+  padding: 20px;
+  position: absolute;
+}
+```
+
+<img src="noteImg/absoluteposition.png">
+
+Ok so we put it in the position of absolute, but it didn't move? What did we do wrong? We forgot to add the other positions that will help it offset from the relatively positioned container (left, right, top, bottom)
+
+### Using offsets for absolute positioning (top, bottom, left, right)
+
+#### What happens when we set top to 0?
+
+Our button moved from the very bottom of the page to the top of the page. Why?
+<img src="noteImg/topviewport.png">
+
+Because these pixels here:
+
+<img src="noteImg/topzeroposition.png">
+
+Are being counted from the top of the viewport. So this by default, this element is positioned in relation to the viewport, which again is the visible part of the page. If we set it to:
+
+<img src="noteImg/bottomzero.png">
+
+Then this takes the bottom portion of the viewport. Which is a very weird place for it to be. Its important to note here that in fact, this element has been completely taken out of the flow and it's now even hovering over this content.
+
+<img src="noteImg/bottomviewport.png">
+
+Usually we want to absolutely position the element in relation to some other parent element. In order to do that, we need to specifically set the position of that parent element to relative.
+
+In this case the parent container is the body.
+
+```
+body {
+  position: relative;
+}
+```
+
+<img src="noteImg/correctposition.png">
+Great! Now it works! Now matter what happens, the element is always correctly positioned in the bottom right corner of the body.
+
+It also doesn't always have to be the body. We could also position this inside of any other parent element, which is not the body.
+
+### Example 2: .container (not the body)
+
+Let's try using `.container` or `div class="container"` as a parent element. However, in order for this to work the element needs to be inside of the container otherwise it's not a parent element of the button yeah?
+
+Semantically speaking, the best place would to probably put it in the header. This place here is actually a commonplace where you would think a like button makes sense in a blog post like this.
+
+<img src="noteImg/Screen Shot 2021-08-03 at 9.27.07 AM.png">
+Even though visually it's not going to appear there but we re positioning this element absolutely.
+For now nothing changes until we make the parent container relative.
+
+```
+.container {
+  position: relative;
+}
+```
+
+Now it is in the top right corner now of the container element.
+
+### Example 3 (Graphical explanation)
+
+<img src="noteImg/Screen Shot 2021-08-03 at 9.35.52 AM.png">
+Imagine we have this kind of yellow element here with the container class and its position is set to relative. Then we have another element which has the class el and its position is set to absolute and has top set to 100px and left set to 200px. Therefore it will be located exactly 100px from the top of it's relatively positioned container element. And 200px from the left of it.
+
+It's important to note that it is the first parent element that has position set to relative from which the absolutely positioned element will be placed.
+
+### Example 4 using Header
+
+Let's remove the relative from container and move it to the header element. `header class="post-header"`
+
+<img src="noteImg/Screen Shot 2021-08-03 at 9.50.03 AM.png">
+
+Checking inside the dev tools we can see that it looks like the button is now 50px from the bottom and from the right of its new relatively positioned container.
+
+Don't use this to build complex layouts, we use it for single elements or small things. In the real world, we don't use this for example, to position this menu here, like here on top of the page or to position for example this author image.
