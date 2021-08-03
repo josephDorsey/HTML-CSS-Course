@@ -1280,3 +1280,151 @@ Let's remove the relative from container and move it to the header element. `hea
 Checking inside the dev tools we can see that it looks like the button is now 50px from the bottom and from the right of its new relatively positioned container.
 
 Don't use this to build complex layouts, we use it for single elements or small things. In the real world, we don't use this for example, to position this menu here, like here on top of the page or to position for example this author image.
+
+## Lecture 19: Pseudo-elements
+
+Essentially elements that don't exist in HTML, but we can still select and style in CSS.
+Just like `pseudo-classes` are made with just one `:` colon. `pseudo-elements` are made with two of them `::`.
+
+### ::first-letter
+
+This will style the first letter of the element its selecting
+
+#### fixing h1 italic emoji
+
+```
+h1::first-letter {
+font-style: normal;
+margin-right: 5px;
+}
+```
+
+See now there is some space between the icon and the rest of the message in the h1 and the italic for emoji is gone as well.
+
+#### making h2 first letter bigger
+
+```
+h2::first-letter {
+  font-size: 30px;
+}
+```
+
+### ::first-line
+
+targets the first line of whatever element selected
+
+#### making all first line in paragraphs red
+
+```
+p::first-line {
+  color: red;
+}
+```
+
+### The adjacent sibling element selector (+)
+
+The selector is a `+`.
+`sibling element`: basically an element that is part of the same parent.
+`adjacent sibling`: is a sibling that is actually the very next element. For example:
+
+<img src="noteImg/Screen Shot 2021-08-03 at 10.15.02 AM.png">
+
+The adjacent sibling to h3 is paragraph here.
+So for this example we want to only select paragraphs that come after the h3's
+
+```
+h3 + p::first-line {
+  color: red;
+}
+```
+
+#### h3 + p::first-line example
+
+<img src="noteImg/Screen Shot 2021-08-03 at 10.21.10 AM.png">
+
+This will now only select the first line in paragraphs that come after the h3.
+
+### ::after and ::before (most important pseudo-elements)
+
+`::after`: creates a `pseudo element` that will automatically be the very last child of the selected element.
+`::before`: creates a `pseudo element` that will automatically be the first last child of the selected element.
+Both of these act the same, they just change the position of where they are.
+
+#### ::after pseudo element in practice
+
+And sure it does sound strange but this can actually be very useful for some small cosmetic style for which we don't want to necessarily add a new element to the HTML.
+
+<img src="noteImg/Screen Shot 2021-08-03 at 10.33.09 AM.png">
+
+For example, he added the little yellow element that says Top, implying this is the top article. For this very small thing we don't need to add a whole new element into our HTML. We could do that, but this is a good use case to show you the before and after pseudo elements.
+
+It is mandatory to specify `content:` property. inside it we need to write something and it can actually be an empty string.
+
+```
+h2::after {
+  content: "";
+}
+```
+
+But for our case lets put `TOP`.
+
+```
+h2::after {
+  content: "TOP";
+}
+```
+
+<img src="noteImg/Screen Shot 2021-08-03 at 10.46.20 AM.png">
+
+Here we can see it added on our webpage and into our dev tools.
+
+```
+h2::after {
+  content: "TOP";
+  background-color: #ffe70e;
+  font-size: 16px;
+  font-weight: bold;
+}
+```
+
+By default any pseudo-element is actually an inline element. And so if we want to give it any padding, we want the box model to apply to ir normally. In order for us to do that we need to render this element an inline-block box.
+
+```
+h2::after {
+content: "TOP";
+background-color: #ffe70e;
+font-size: 16px;
+font-weight: bold;
+display: inline-block;
+}
+```
+
+_THIS IS A GREAT CASE FOR USING AN INLINE BLOCK (TAKE NOTE OF THIS)_
+
+#### How do we position this ::after?
+
+We use absolute positioning. First we need to give the parent element inside of which we want, actually the positioning to happen, the position relative. In this case its going to be the h2 element
+
+```
+h2 {
+  position: relative;
+}
+
+h2::after {
+  position: absolute;
+}
+```
+
+So we actually want to move it up and to the right.
+
+#### Negative length
+
+If we were to set `right: 25px;` It would move from the right to the left. However, if we set a negative value, it will move in the opposite direction. `right: -25px;`
+The same for top. It will move up instead of down.
+
+```
+h2::after {
+  right: -25px;
+  top: -10px;
+}
+```
