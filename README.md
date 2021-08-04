@@ -1387,7 +1387,7 @@ h2::after {
 }
 ```
 
-By default any pseudo-element is actually an inline element. And so if we want to give it any padding, we want the box model to apply to ir normally. In order for us to do that we need to render this element an inline-block box.
+By default any `pseudo-element` is actually an inline element. And so if we want to give it any padding, we want the box model to apply to ir normally. In order for us to do that we need to render this element an inline-block box.
 
 ```
 h2::after {
@@ -1403,7 +1403,7 @@ _THIS IS A GREAT CASE FOR USING AN INLINE BLOCK (TAKE NOTE OF THIS)_
 
 #### How do we position this ::after?
 
-We use absolute positioning. First we need to give the parent element inside of which we want, actually the positioning to happen, the position relative. In this case its going to be the h2 element
+We use `display: absolute` positioning. First we need to give the parent element inside of which we want, actually the positioning to happen, the position relative. In this case its going to be the `h2 element`
 
 ```
 h2 {
@@ -1427,4 +1427,76 @@ h2::after {
   right: -25px;
   top: -10px;
 }
+```
+
+## Lecture 20: Developer Skill #1: Googling and Reading Documentation
+
+One of the most important messages that I want to get across this course is that you do not have to memorize every single CSS property that there is.
+
+It is important to be aware of the fact that is is okay not to know everything and that you can always Google when you don't know anything or read the documentation.
+
+### Google CSS
+
+#### Example 1 (add cursor to mouse button)
+
+Imagine that you built a forum on your webpage and that forum has a button, but now you don't remember how you can actually add like that mouse cursor to the button.
+What would we do first?
+
+So the first word that we should use when searching something related to CSS is CSS. Then type CSS property to add a mouse cursor to button. Type this into the search bar:
+
+```
+css property to add a mouse cursor to button
+```
+
+We usually want to look for stackoverflow.com. Where millions of users have posted all kinds of questions about programming. Including `CSS`. ✅
+
+Theres `W3 schools` but they are usually not a good reference so don't use that. ⛔️
+
+We can also use CSS-tricks, which is also very good. ✅
+
+We can also use developer.mozilla.org, which is actually the MDN documentation. ✅
+
+#### Example 2 (css how to center anchor elements)
+
+Returning to our page, imagine if we wanted to center all of these links inside of navigation.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 8.39.58 AM.png">
+
+If we try on our own and set the `nav a:link` to `text-align: center;` Does it center it? It doesn't.
+
+Why? Because these elements here are `inline elements`. Therefore the only space that they occupy is exactly the space that the content needs, right? So the width of these elements is exactly as wide as it needs to be to fit the content. Therefore it is not possible to center anything inside of them because there is simply no empty space inside of which the element could be centered.
+
+Having arrived at this conclusion, maybe now you don't know how to actually solve the problem because you still want these links centered here. So let's try googling that again.
+
+```
+css how to center anchor elements
+```
+
+Okay so our answer is to add the css text-align property to its parent container. Which in our case `nav` is the parent container for the links. So add it there.
+
+```
+nav {
+  text-align: center;
+}
+```
+
+<img src="noteImg/Screen Shot 2021-08-04 at 8.47.35 AM.png">
+And perfect! We did what we were trying to solve.
+
+### MDN Documentation
+
+#### Example of text-align documentation
+
+So with this one if we wanted to learn more about the property we can use MDN in our search as well.
+
+```
+mdn css text-align
+```
+
+#### Example of border documentation
+
+If we wanted to learn more about the border documentation and its properties this is a great way to source it. As it has demos for all the different values so you can cater to the one you want.
+
+```
+mdn css border
 ```
