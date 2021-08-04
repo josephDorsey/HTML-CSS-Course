@@ -1500,3 +1500,80 @@ If we wanted to learn more about the border documentation and its properties thi
 ```
 mdn css border
 ```
+
+## Lecture 21: Developer Skill #2: Debugging and Asking Questions
+
+Now another very important skill that you will need as you become a web developer is to debug your own code and to ask questions in case that you cannot solve certain problems.
+Let's pretend now that there's some error in our code.
+In HTML, the most common bug that occurs, is that some elements remain unclosed.
+
+For example let's say that we never closed one of our tags. So now we get something that wasn't intended:
+
+<img src="noteImg/Screen Shot 2021-08-04 at 9.32.58 AM.png">
+
+### How do we fix this?
+
+Our first issue is that clearly all of the text is bold where you don't want it to be. And so to debug this code, you need to look where the code is not bold.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 9.32.58 AM.png">
+
+If you look at this image the `Posted by` is not in bold so maybe we should look in our HTML code.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 9.30.26 AM.png">
+And bam! We didn't close our strong tag.
+
+### HTML Validator tool (HTML)
+
+In this example, we are pretending that we didn't close the </aside> tag.
+
+It will basically allow you to see if your HTML is valid or not. So copy your code and go to [https://validator.w3.org/#validate_by_input] And input the code to see what's wrong.
+
+This is actually really cool! It'll show you all the errors in your code and you can go and fix them!
+
+### Diff Checker (HTML)
+
+This website is cool because you can compare code to see if they are the same or if there are some differences. First box has the original text and the second box has your code (or the changed text).
+
+### CSS (use the dev tools)
+
+If one selector is way more complex than the other, then many times it's actually the more complex one that gets applied.
+
+`main-header nav a:link` has a specificity of `(0,2,2)`
+
+```
+main-header nav a:link {
+  color :blue;
+}
+```
+
+`nav a:link` has a specificity of `(0,1,2)`
+
+```
+nav a:link {
+  color: red;
+}
+```
+
+The larger numbers will be the one that actually gets applied.
+
+Don't write selectors like this to avoid this problem:
+
+```
+main-header nav a:link {
+  color :blue;
+}
+```
+
+Say we made a simple spelling mistake in our CSS. In this example our h2::before element isn't in the right position.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 10.44.49 AM.png">
+
+We wanted our pseudo-element on the right side! What happened? Let's look in the dev tools. We need to target our h2 element and click on it and click the pseudo-element to see the styling for it.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 10.43.25 AM.png">
+
+Ah! there's our problem. We misspelled `right` as `righ`. And look dev tools even tells us that the property is unknown. All we have to do is change it back to normal in our CSS sheet.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 10.42.55 AM.png">
+
+Play around with the dev tools instead of the code. It will be beneficial for experimenting different values.
