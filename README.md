@@ -1577,3 +1577,125 @@ Ah! there's our problem. We misspelled `right` as `righ`. And look dev tools eve
 <img src="noteImg/Screen Shot 2021-08-04 at 10.42.55 AM.png">
 
 Play around with the dev tools instead of the code. It will be beneficial for experimenting different values.
+
+## Lecture 22: Challenge #3
+
+Last coding challenge in this section!
+
+<img src="noteImg/Screen Shot 2021-08-04 at 11.00.01 AM.png">
+
+1. Add a sale tag in the top left corner
+
+- notice how there is spacing between the letters for Sale (can we use letter-spacing property).
+
+- can be done with pseudo-element and absolute positioning. Remember to make container or parent element position relative. (also for absolute positioning remember to use top, bottom, left, right)
+
+- doesn't necessarily need a pseudo element, can be done with a paragraph element instead.
+
+2. Next we have six colors available in which we can buy the shoe. So I want you to build this part here.
+
+- we need to create an element and then inside of that element, which can be a simple div, we need to create six more elements, which can also be divs. And then just give them colors. and put them side by side.
+  So they will need the display: `inline-block` to achieve that. since `div` elements are naturally block elements.
+
+### Challenge Solution
+
+I attempted and tried ,but couldn't figure out how to make the boxes side by side. I think by mistake I made of instead of writing the div `inline-block` but I think in actually I was typing out `inline-box`.
+
+In the video he makes 6 divs inside a container called `.colors` container and gives them all classes of `.color`.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 12.52.12 PM.png">
+
+```
+  <div class="colors">
+  <div class="color></div>
+  <div class="color></div>
+  <div class="color></div>
+  <div class="color></div>
+  <div class="color></div>
+  <div class="color></div>
+  </div>
+```
+
+<img src="noteImg/Screen Shot 2021-08-04 at 12.52.24 PM.png">
+He then attaches a background-color so that they have some color when they appear. 
+```
+color {
+  background-color: #000;
+}
+```
+But right now they are not visible because they don't have any content. But if we give them a `height` and `width` then they will.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 12.52.37 PM.png">
+
+Immediately they get a height and they occupy all the space that they can because they are block level elements by default right?
+
+Now we want to specify their width to be the same, but when we do they condense and stack on each other.
+
+<img src="noteImg/Screen Shot 2021-08-04 at 12.55.20 PM.png">
+
+First lets give them their corresponding colors as classes.
+
+```
+<div class="colors">
+    <div class="color"></div>
+    <div class="color blue"></div>
+    <div class="color red"></div>
+    <div class="color orange"></div>
+    <div class="color green"></div>
+    <div class="color brown"></div>
+  </div>
+```
+
+Obviously the first div doesn't need the class because my default we have the background-color set the black.
+
+```
+/* Color containers */
+.color {
+  background-color: #000;
+  height: 22px;
+  width: 22px;
+}
+/* Color */
+.blue {
+  background-color: blue;
+}
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+.green {
+  background-color: green;
+}
+.brown {
+  background-color: brown;
+}
+```
+
+### How do we put them side by side?
+
+We make them `display: inline-block`. Now give them a `margin-right of 10px;` and it should work! Next add a `margin-top` to it because the `a element` is naturally an inline element so it gets no margin to the top/bottom.
+
+### This concludes the CSS Fundamentals section
+
+WOOT WOOT GREAT WORK!!!!! WE LEARNED A LOT!
+
+# Section 3: Layouts: Floats, FlexBox, and CSS Grid Fundamentals
+
+## The 3 Ways of Building Layouts
+
+### What does layout mean?
+
+The way that text, images, and other content is placed and arranged on a webpage.
+Layout gives the page a visual structure, into which we place our content.
+
+`Building a layout`: arranging page elements into a visual structure, instead of simply having them placed one after another (normal flow);
+
+### Two types of layouts: page layout & component layout
+
+<img src="noteImg/pagelayoutvscomponent.jpg">
+
+### The 3 ways of Building Layouts with CSS
+
+<img src="noteImg/3waysoflayoutscss.jpg">
