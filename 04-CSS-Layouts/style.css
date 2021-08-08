@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* Page Sections */
 body {
   color: #444;
@@ -227,4 +228,34 @@ h2::before {
   position: absolute;
   top: -10px;
   right: -25px;
+}
+
+/* Floats */
+.author-img {
+  float: left;
+  margin-bottom: 20px;
+}
+
+.author {
+  /* padding-left: 80px; */
+  margin-left: 20px;
+  margin-top: 10px;
+  float: left;
+}
+
+h1 {
+  float: left;
+}
+nav {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: block;
 }

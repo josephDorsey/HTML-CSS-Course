@@ -1683,7 +1683,7 @@ WOOT WOOT GREAT WORK!!!!! WE LEARNED A LOT!
 
 # Section 3: Layouts: Floats, FlexBox, and CSS Grid Fundamentals
 
-## The 3 Ways of Building Layouts
+## Lecture 1: The 3 Ways of Building Layouts
 
 ### What does layout mean?
 
@@ -1699,3 +1699,220 @@ Layout gives the page a visual structure, into which we place our content.
 ### The 3 ways of Building Layouts with CSS
 
 <img src="noteImg/3waysoflayoutscss.jpg">
+
+## Lecture 2: Using Floats
+
+When an element is removed from the normal flow: "out of flow"
+
+Text and inline elements will wrap around the floated element.
+
+The container will not adjust its height to the element
+
+```
+float: left;
+float: right;
+```
+
+Let's understand how the float property works. What if we actually wanted these two elements here to by side by side?
+
+<img src="noteImg/prefloat.jpg">
+
+Right now they are not side by side remember? Because paragraph element by default is a block level element meaning that it occupies its own line.
+
+So it created a line break before and after its element. We could fix this by making it an inline or inline-block element but we could trying floating it instead.
+
+```
+.author-img {
+  float: left;
+}
+
+.author {
+
+}
+```
+
+<img src="noteImg/floated--1.jpg">
+
+.author will be taken out of flow kind of like the absolute positioning, but the difference with floats is that all the other elements will basically float around it.
+
+For example, if we created more text doing this command `lorem + enter` then generated text will be created.
+
+<img src="noteImg/floated--2.jpg">
+
+So now this becomes even more visible how this text now basically floats around the image here. Let's put it back to normal.
+
+Let's try another example to see what float really does.
+
+```
+.author-img {
+  float: left;
+}
+.author {
+  padding-left: 10px
+}
+```
+
+If we set a padding-left to the image say 10 pixels, then nothing actually happened. So let's inspect this.
+
+### Padding Example 1
+
+<img src="noteImg/paddingleftexample--1.jpg">
+So you can see that the element doesn't actually start right where the text is, but it does start right behind the image. The 10px in the image above is the little green that we see on the left. 10px is too small to see a change.
+
+### Padding Example 2
+
+<img src="noteImg/paddingleftexample--2.jpg">
+
+Let's see if 50 will change. Nope because it is sill behind the image.
+
+### Padding example 3
+
+<img src="noteImg/paddingleftexample--3.jpg">
+
+If we try 80px only now is it finally enough to start moving out behind that image. Also add 10px to the top.
+
+Let's try a way to fix the fact that this p element basically starts right at the beginning of the container. So behind the image. So let's float the img to the left.
+
+```
+.author {
+  padding-left: 80px;
+  padding-top: 10px;
+  float: left;
+}
+```
+
+### p element starting after floated image
+
+<img src="noteImg/paddingleftexample--4.jpg">
+Now you can see the p element starts right after the floated img.
+
+```
+.author {
+  padding-top: 10px;
+  margin-left: 20px;
+  float: left;
+}
+```
+
+### example creating a small component layout
+
+<img src="noteImg/paddingleftexample--5.jpg">
+
+If we update to this removing `padding-left` and replacing it with `margin-left: 20px`. It creates a nice layout as if its a small component layout right here.
+
+How would we create space between the author image, the space between the image and the posted by and the image below?
+
+if we try adding margin-bottom to the image
+
+```
+.author-img {
+  float: left;
+  margin-bottom: 20px;
+}
+```
+
+### Floated elements still create margin
+
+<img src="noteImg/paddingleftexample--6.jpg">
+we see that floated elements are still able to create margins around it.
+
+Let's try another example. Let's see what happens if we float our h1 to the left and nav to the right
+
+```
+h1 {
+  float: left;
+}
+nav {
+  float: right;
+}
+```
+
+This creates a weird phenomenon with the background-color associated.
+
+### Where did the element's height go?
+
+<img src="noteImg/paddingleftexample--7.jpg">
+The element kind of lost its height. The only reason the background is visible is because of its padding. Why is this happening?
+
+The child elements, which are only h1 and nav in the header. Right now all of them are floated. This means that it's as if these elements would not even be on the page. So as if they had been removed. So now the element basically has no content anymore and so that way it makes sense that its height is actually zero. If we look at the box model it reflects the zero height.
+
+### Box Model Example
+
+<img src="noteImg/paddingleftexample--8.jpg">
+
+This confirms that the padding is the only thing letting the element stay visible. THIS IS CALLED COLLAPSING ELEMENTS - when an elements height has collapsed. How do we fix this?
+
+## Lecture 3: Clearing Floats
+
+In order to fix the collapsed height we need to clear the floats.
+
+### Method 1 (clear)
+
+simply add another element to the header. And clear the floats from there. So ad a div with the class of clear and keep the element empty.
+
+```
+<header>
+  <nav>
+          <a href="blog.html">Blog</a>
+          <a href="#">Challenges</a>
+          <a href="#">Flexbox</a>
+          <a href="#">CSS Grid</a>
+  </nav>
+  <div class="clear"></div>
+  </header>
+```
+
+Now select the .clear class we just made in CSS.
+
+```
+clear: left, right both
+```
+
+clear has the option to clear the left, right, or both floats.
+Since we have both `h1 { float: left; }` and `nav { float: right}` we want to have clear both.
+
+```
+clear: both;
+```
+
+<img src="noteImg/clearfloatex--1.jpg">
+Back in the day people used to build layouts using float properties like this. Not a very useful technique if you have to create many divs in order to clear elements.
+
+### Method 2 (clearfix)
+
+`clearfix` hack has been widely used by many in the CSS community.
+
+So the way that it works is that the element that has the collapsed height. In our case the header we add the clearfix class to it.
+
+<img src="noteImg/clearfloatex--2.jpg">
+
+```
+.clearfix::after {
+  clear: both;
+}
+```
+
+So we added a clearfix class and in CSS we selected it and gave it the pseudo-class after. Remember that this eleement basically creates a new element which will be the last child element of the container. In a way its the same as adding the empty div element here manually right?
+
+If you remember ::after only appears after we define something in the content property. In this case we can leave an empty string.
+
+```
+.clearfix::after {
+  clear: both;
+  content: "";
+}
+```
+
+Also remember that pseudo elements ::after and ::before are inline elements. Clearing floats like this only works on <strong>block-level elements</strong>.
+So we need to set the display property to block.
+
+```
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+```
+
+<img src="noteImg/clearfloatex--1.jpg">
+Then this will work
