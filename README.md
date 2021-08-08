@@ -1915,4 +1915,111 @@ So we need to set the display property to block.
 ```
 
 <img src="noteImg/clearfloatex--1.jpg">
-Then this will work
+Then this will work.
+
+## Lecture 4: Building a simple float layout
+
+What we will build in this section is this:
+
+<img src="noteImg/floatlayout--1.jpg">
+
+Let's identify the main parts of our layout.
+
+```
+.container {
+  width: 1200px;
+}
+article {
+  background-color: red;
+}
+
+aside {
+  background-color: yellow;
+}
+
+footer {
+  background-color: green;
+}
+```
+
+### Increasing the container's width
+
+Let's fix the container and give it a width of `1200px`. The colors here don't really matter. Just so we can actually see what's happening. Before using floats we actually need to change the width of these two elements that we want `side by side`. So `article` and `aside`.
+
+Since they are both `block elements`, they occupy `100%` of the available width of the container.
+Our container is `1200px wide` so let's divide that up for the `article` and the `aside`.
+
+Article will be given `900px` and the remaining `300px` will go to the side bar (aside).
+
+```
+article {
+  background-color: green;
+  width: 900px;
+}
+
+aside {
+  background-color: red;
+  width: 300px;
+}
+```
+
+`900 + 300 = 1200 of the container`. Now all that's left to do is put them side by side.
+So give `article float: left` and `aside float: right`.
+
+```
+article {
+  background-color: green;
+  width: 900px;
+  float: left;
+}
+
+aside {
+  background-color: red;
+  width: 300px;
+  float: right;
+}
+```
+
+<img src="noteImg/floatlayout--2.jpg">
+
+### What's wrong with the footer?
+
+Notice how they are `side-by-side` but the footer is now floating around the two elements as well. This is because that is exactly what the float property does. It makes it so the elements that come after it, will float around that first element.
+
+So we have a first, the article, then the aside, and afterwards the footer. So if we set the aside to float the element that comes after will float around it.
+
+This gets confusing which is why we replace Floats with CSS grid and Flex box.
+
+Anyways we want the footer to be back at the bottom. We wont need create an empty div or use the clearfix class. Because there was simply no other element on which we could clear floats, but now there is. So it is this next element, which we do not want to float around the other ones.
+
+```
+footer {
+  clear: both;
+}
+```
+
+And now this fixes the issue.
+
+Now in this situation it doesn't really matter if we used `float: right` or `float: left` on the `aside`. And the reason for that is that there is no empty space between them anyways. So in this case it doesn't matter.
+
+### Example with space in between (float left & right)
+
+But let's actually create some space between them. In this case, using `margin` or `padding` is probably not the best approach so instead what I will do is to simply decrease the size of this article element here, and so that will then essentially create a gap between the two elements. So let's `decrease` this by `75 pixels`.
+
+```
+article {
+  width: 825px;
+}
+```
+
+So now a gap appears between the two elements. Because the elements are `floated to the left and right`. So of course if we have some remaining space it will simply stay here in the middle of the two.
+
+<img src="noteImg/floatlayout--3.jpg">
+
+### Example with space in between (both floated left)
+
+If it was floated to the left instead the remaining space would be on the other side of the element.
+
+<img src="noteImg/floatlayout--4.jpg">
+
+Again this can be quite confusing. That's why people who work on CSS came up with these modern solutions, such as `Flexbox and CSS grid`. First we need to quickly learn about something else, which is to finally change the box model from the default behavior to something that makes more sense.
