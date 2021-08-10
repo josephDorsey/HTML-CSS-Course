@@ -2023,3 +2023,149 @@ If it was floated to the left instead the remaining space would be on the other 
 <img src="noteImg/floatlayout--4.jpg">
 
 Again this can be quite confusing. That's why people who work on CSS came up with these modern solutions, such as `Flexbox and CSS grid`. First we need to quickly learn about something else, which is to finally change the box model from the default behavior to something that makes more sense.
+
+## Lecture 5: { Box-sizing: Border-box; }
+
+Let's now see how we can run into problems with the default box model, and also how we can fix it. Finally, we are gonna fix the spacing of the sidebar here a little bit.
+
+So currently there are no paddings as you can see on the aside element. They have a margin but not a padding, so that's not really right so lets fix it and then we will run into a problem and then we will solve it.
+<img src="noteImg/floatlayout--5.jpg">
+So the reason we have some space right here on the right of the li's is because right at the beginning we added some margin to the ul because otherwise the bullet points disappeared right?
+
+There should be no margin lets take that out. In this case we want to use it on the `.related` class because that's whats selecting the elements on the asides ul.
+
+```
+.related {
+  margin-left: 0;
+}
+```
+
+Now lets go back and add some padding right? When we want space inside of an element we shouldnt use margin.
+
+```
+padding: 50px 40px;
+```
+
+<img src="noteImg/boxsizingexample--3.jpg">
+
+So remember we defined it at a width of 300 pixels of width right? But then padding of 40px that we just added gets added to the total width, simply because that is the default behavior of the box model. So now the width of this element is 380px. Which does no longer fit between the width of this article.
+
+<img src="noteImg/boxsizingexample--2.jpg">
+
+If look closely in the corner, you can see that it is a bit wider than there would have been space to fix the aside.
+
+However, most CSS people use `box-sizing: border-box`.
+
+### The Box Model with Box-sizing: Border-box
+
+The default behavior for `box-sizing: content-box`
+<img src="noteImg/boxsizingmodel.jpg">
+Let's try adding this to our aside element.
+
+```
+  aside {
+  background-color: #f7f7f7;
+  border-top: 5px solid #1098ad;
+  border-bottom: 5px solid #1098ad;
+  padding: 50px 40px;
+  box-sizing: border-box;
+}
+```
+
+This will fix the problems we just experienced.
+So with this the `final width and height` calculations are very simple. There's actually nothing left to calculate.
+
+So the final width of any element will simply be exactly the width that we define in our code, no matter the `padding and borders`.
+
+So now we if define some `paddings or borders`, they will not get added to the dimensions of the box. Which makes our lives so much easier. This also means at the same time is that padding and borders that we do specify will not or (now?) reduce the inner width of the content, but that's usually not problem.
+
+<img src="noteImg/boxsizingexample--5.jpg">
+
+If we now check our box model, then you will see that the width of the content area is no longer the 300 that we defined. but instead the entire width of the element is `220 + 40 + 40` which if we add it all together, that makes exactly `300 pixels`, which is defined for this element right here. Which is the width that we defined for this element.
+
+So again the content area is now only 220, but that's not a problem at all because what we're really interested in is the width of the entire element itself.
+
+So we want basically box-sizing: border-box to be the default on every single element on the page. So how can we do that? ADD IT TO THE UNIVERSAL SIGN.
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
+
+## Lecture 6: Coding Challenge
+
+<img src="noteImg/codingchallenge--1.jpg">
+1. First thing we should do is add the box-sizing trick to our universal selector.
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
+
+2. After that we can start using floats for example, in order to place this free shipping label here at the right site, so right beside this price label.
+3. For the colors we don't need to float them because we used inline blocks to place these colors here all side by side
+4. Biggest part of the challenge is to create a layout where these three parts are side by side.
+5. Between the elements we have 40px of space. So we will need to figure out the width of both
+   width of 240px?
+
+I completed the challenge!
+
+### His attempt
+
+#### Structuring the global
+
+```
+* {
+  box-sizing: border-box
+}
+```
+
+First things first, we want to add `box-sizing: border-box` to our universal selector so all of our elements.
+
+#### Next let's float price and shipping side by side
+
+```
+.price {
+  float: left;
+}
+
+.shipping {
+  float: right;
+}
+```
+
+So it might not look right if you dont have the 3 div sections separating all of this content.
+
+#### what's wrong with the paragraph element?
+
+The paragraph element is floating around the price and shipping elements. We need to clear the floats for this element.
+
+```
+.product-summary {
+  clear: both;
+}
+```
+
+#### Calculating Total Width for the containers
+
+To figure out the total width for the containers there are a few factors that we need to take into account.
+
+So our containers width is `825`, and it also has a border of four on each side. So the math here is 825 pixels minus 8 (the two borders on each side) and then minutes 250 which is the width of the image. We also want 40px in between the 1st/2nd section and 2/3rd section on both sides. So we also need to subtract that because we cannot use for the columns.
+
+```
+825 - 8 - 250 - 80 = 487
+```
+
+So the result of this calculation here will be the exact amount of space that we have remaining to fill up the columns.
+
+So the total remaining width is 487 for the two columns but we have two of them so we have to divide that answer by 2.
+
+`487/2 is 243.5` or just `243 pixels` so assign that to the other two sections.
+
+WE used different methods but still arrived at the same conclusion.
