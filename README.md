@@ -2283,3 +2283,36 @@ Now you can see on either side that they are evenly spaced/centered inside of th
 If we try setting `justify-content: space-between`. You can see that the remaining space is now distributed evenly between all of these elements. So they will all basically have now this space.
 
 <img src="noteImg/flexboxexample--12.jpg" alt="example of justify-content: space-between">
+
+## Lecture 8: Flexbox Overview
+
+### What is Flexbox?
+
+Flexbox is a set of related <strong>CSS properties</strong> for <strong>building 1-dimensional layouts</strong>.
+
+the main idea behind flexbox is that empty space inside a container element can be <strong>automatically divided</strong> by its child elements.
+
+Flexbox makes it easy to automatically <strong>align items to one another</strong> inside a parent container, both horizontally and vertically.
+
+Flexbox solves common problems such as <strong>vertical centering</strong> and creating equal-height columns.
+
+Flexbox is perfect for <strong>replacing floats</strong>, allowing us to write fewer and cleaner html and CSS code.
+
+### Flexbox Terminology
+
+1. The element on which we want to use flexbox is called the flex-container. In order to make a flex container you have to set its display property to `flex`
+
+2. Once you do this all the direct children of that flex container will become the so called `flex-items`.
+
+3. Now the direction in which these flex items are laid out is called the `main-axis`.
+
+4. The other perpendicular axis is called the `cross-axis`.
+
+It's important to know these names because we can actually change the direction of the main axis, and so therefore also of the cross axis. Plus we can also align elements along the main axis and along the cross axis in different ways.
+
+<img src="noteImg/flexboxexample--13.jpg">
+
+### Flexbox and Flex-items properties
+
+<img src="noteImg/flexboxexample--14.jpg">
+`Flex-wrap` and `align-content: stretch` will not be covered in this course as they are advanced properties in Flexbox.
