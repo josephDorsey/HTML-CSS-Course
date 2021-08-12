@@ -2095,9 +2095,10 @@ So we want basically box-sizing: border-box to be the default on every single el
 }
 ```
 
-## Lecture 6: Coding Challenge
+## Lecture 6: Coding Challenge #1 (Converse Ad)
 
 <img src="noteImg/codingchallenge--1.jpg">
+
 1. First thing we should do is add the box-sizing trick to our universal selector.
 
 ```
@@ -2169,3 +2170,116 @@ So the total remaining width is 487 for the two columns but we have two of them 
 `487/2 is 243.5` or just `243 pixels` so assign that to the other two sections.
 
 WE used different methods but still arrived at the same conclusion.
+
+## Lecture 7: Introduction to Flexbox
+
+So for this section our current blogpost file that we've been working on is not ideal for this. So we need to get files from our starter file `Flexbox.html and CSSgrid.html`
+
+So in order to get started with Flexbox is to use the display property and set it to flex on some container element. (meaning a container that has child elements)
+
+<img src="noteImg/flexboxexample--1.jpg">
+
+```
+.container {
+  display: flex;
+}
+```
+
+Now this is what it looks like after we add `display: flex` to the container.
+
+<img src="noteImg/flexboxexample--2.jpg">
+
+Notice how they are immediately side-by-side without having to use any floats or anything like that. These elements right here are called flex items.
+
+<img src="noteImg/flexboxexample--4.jpg">
+
+Because they are the child element of the flex container.
+
+<img src="noteImg/flexboxexample--3.jpg">
+
+The last color in this example:
+<img src="noteImg/flexboxexample--2.jpg">
+
+Is actually the background color of the rest of the empty container. Flex items need less a lot less space.
+
+Horizontally each of these elements takes up exactly the space necessary for its text content. However, things vertically are a bit different.
+
+Vertically by default, all the flex items are as tall as the tallest element, which in this case has 150 pixels, because of:
+
+```
+el--3 {
+  height: 150px;
+}
+```
+
+If we were to change that to 250px all of them grow taller.
+<img src="noteImg/flexboxexample--5.jpg">
+
+If we were to remove the height on the element they would only have the height to occupy the space that's necessary for the content.
+
+<img src="noteImg/flexboxexample--6.jpg">
+
+### How to vertically align flex-items
+
+align-items: center;
+
+In order to demonstrate how powerful flexbox can be, let me show you one of its most useful applications, which is vertical centering.
+
+So to basically center all these items vertically, all we have to do is say
+
+```
+align-items: center;
+```
+
+So the flex container still takes the height of the highest element which is still the one with 150px, but now all the ones around it simply take the space that they need for the text or in general for the content.
+
+<img src="noteImg/flexboxexample--7.jpg">
+
+### To put flex-items at the very start
+
+To align our items are the very start we would say:
+
+```
+align-items: flex-start;
+```
+
+<img src="noteImg/flexboxexample--8.jpg">
+
+### to put flex-items at the very end
+
+To align our items at the very end we would say:
+
+```
+align-items: flex-end;
+```
+
+<img src="noteImg/flexboxexample--9.jpg">
+
+### default value for align-items
+
+The default value for align-items is `stretch`.
+Which looks like our beginning. All elements will stretch as tall as the tallest element.
+
+```
+align-items: stretch
+```
+
+<img src="noteImg/flexboxexample--10.jpg" alt="example of align-items: stretch">
+
+### How to center flex-items horizontally
+
+We set it to:
+
+```
+justify-content: center;
+```
+
+Now you can see on either side that they are evenly spaced/centered inside of the container.
+
+<img src="noteImg/flexboxexample--11.jpg" alt="example of justify-content: center">
+
+### space-between
+
+If we try setting `justify-content: space-between`. You can see that the remaining space is now distributed evenly between all of these elements. So they will all basically have now this space.
+
+<img src="noteImg/flexboxexample--12.jpg" alt="example of justify-content: space-between">
