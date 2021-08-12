@@ -2316,3 +2316,106 @@ It's important to know these names because we can actually change the direction 
 
 <img src="noteImg/flexboxexample--14.jpg">
 `Flex-wrap` and `align-content: stretch` will not be covered in this course as they are advanced properties in Flexbox.
+
+## Lecture 9: Spacing and Aligning Flex items
+
+`align-items:` aligns items along the cross axis (vertical)
+
+`justify-content:` align items along the main axis (horizontally)
+
+So basically using align items on the flex container will make it so that all the flex-items will have the same alignment. So in this case, all aligned to the center.
+
+```
+align-items: center;
+```
+
+### align-self
+
+#### Example 1
+
+However in many situations we want to overwrite that for one single element. And so for that, we use the align self property. For example, let's select our very first element here `el--1` and let's say we want this one aligned to the top.
+
+```
+.el--1 {
+  align-self: flex-start;
+}
+```
+
+<img src="noteImg/flexboxexample--15.jpg">
+By setting it to this property only this element is the only one that moved to the very top.
+
+#### Example 2
+
+Let's try with another one for example, element four
+<img src="noteImg/flexboxexample--15.jpg">
+
+```
+.el--4 {
+  align-self: stretch;
+}
+```
+
+So stretch would be the default, if we didn't set it. It stretches just like the CSS.
+
+#### Example 3
+
+Let's try with .el--5 instead:
+<img src="noteImg/flexboxexample--16.jpg">
+
+🌟 Align-self is one of the most important properties that we can use on flex items.
+
+### Order property
+
+Changing the order in which flex items are displayed on the page can be very helpful when we are adapting a bigger layout to a small layout for mobile screens. Now the default value for all elements is always `0`.
+
+So if we want to move an element to the very first position, all we need to do is specify a number that is lower than that. Let's try on `.el--6`.
+
+```
+  .el--6 {
+    order: -1;
+  }
+```
+
+<img src="noteImg/flexboxexample--17.jpg">
+Now it moved to the very front of the row. It is now the first element.
+
+The same can be said with moving to the end. We just use a number greater than the default `0`.
+<img src="noteImg/flexboxexample--18.jpg">
+
+```
+  .el--1 {
+    order: 2;
+  }
+  .el--5 {
+    order: 1;
+  }
+```
+
+### Adding space manually
+
+We already saw how we can use Flexbox to automatically create space between flex items using justified content, right? But now we are talking about manually creating space. Which is most of the time, even more important actually. There are two ways to do this.
+
+#### Original method (adding margin to flex-items)
+
+Selecting all the elements `.el`
+
+<img src="noteImg/flexboxexample--19.jpg">
+
+```
+.el {
+  margin-right: 30px;
+}
+```
+
+With this we basically created 30 pixels of space between all of these elements, right?
+However, now, in order to really get this right, we would then have to go in order to really get this order. We would have to go in and remove the margin-right from the very last element, which can be a pain since it's an extra step.
+
+#### gap
+
+We can simply add the `gap` property to the container and set it `gap: 30px`. And it will achieve the same as adding `margin-right` manually to our .el elements, but there is no margin.
+
+<img src="noteImg/flexboxexample--19.jpg">
+
+When we inspect with the tools we see none of them have margin.
+
+<img src="noteImg/flexboxexample--20.jpg">
