@@ -2418,4 +2418,117 @@ We can simply add the `gap` property to the container and set it `gap: 30px`. An
 
 When we inspect with the tools we see none of them have margin.
 
-<img src="noteImg/flexboxexample--20.jpg">
+<img src="noteImg/flexboxexample--21.jpg">
+
+## Lecture 10: The Flex property
+
+Flex property is just a shorthand for `flex-grow`, `flex-shrink` and `flex-basis`. Before we start the defaults for each value is:
+
+<img src="noteImg/flexproperty--1.jpg" alt="defaults for flex properties">
+
+### Flex-basis
+
+When we want to size flex items, particularly with a width, then we usually do not use the width property, but instead we use flex basis. So let's say we want these elements to have a width of 100 pixels. Instead of width we use `flex-basis`.
+
+<img src="noteImg/flexproperty--2.jpg">
+
+However, it appears most of these elements do actually have a width of 100px, but when the content is larger than 100 pixels, then the element actually extends to fit that content. Let's inspect that here with the box model. Remove the `gap: 30px` to give us some more space.
+
+Flex-basis is not really rigid. So it's more like a recommendation that we make to the browser, but the browser will then, based on the content, figure out the optimal length.
+
+<img src="noteImg/flexproperty--4.jpg">
+
+Flex-box is allowed to shrink elements so that they fit the container. So if there is not enough space in a container to fit the items with the size that we described here using flex basis, then flexbox is allowed to shrink these items by default because the flex shrink is set to 1.
+
+### Flex-shrink
+
+If we want to change that, sometimes we might want, then we can simply set this to zero.
+
+```
+flex-shrink: 0;
+```
+
+<img src="noteImg/flexproperty--3.jpg">
+
+And now you can see the elements are indeed 200 pixels wide. But then of course the content no longer fits the container. So setting the flex-shrink to 0 is not always advisable, but in some situations it's necessary.
+
+Essentially what Flex-shrink does is to determine whether flexbox is allowed to shrink element if not necessary or not.
+
+### Flex-grow (opposite of flex-shrink)
+
+Determines whether elements are allowed to grow as large as they can or not. So let's try that. So let's say flex grow, set to one.
+
+In this case it doesn't make much sense to have the flex basis. So let's turn it off.
+
+<img src="noteImg/flexproperty--5.jpg">
+
+All right so now you can see that all of them have exactly the same size and in total they filled up the entire flex container. If we remove 'flex-grow: 1`.
+
+Then each of the elements would simply be back to occupying the width that they need to fit the content.
+
+<img src="noteImg/flexproperty--6.jpg">
+
+#### Flex-grow on one element
+
+What happens if we were to apply flex-grow to only one of the elements?
+
+```
+.el--1 {
+  flex-grow: 1;
+}
+```
+
+<img src="noteImg/flexproperty--7.jpg">
+
+#### Having the same size element
+
+So setting flex-grow to one on all of these elements here makes it so that they have the same size. It does not even have to be `flex-grow: 1;`. It could be a `flex-grow: 5;`. They would still be the same size.
+
+#### What if one element had a different grow size?
+
+```
+.el--1 {
+  flex-grow: 2;
+}
+```
+
+So then this would get double of the remaining space than these other ones. It doesnt mean that it will get double the size. Only that it gets double of the available empty space than these other four ones.
+
+For example, imagine that the empty space was 600 pixels.
+
+<img src="noteImg/flexproperty--8.jpg">
+
+The first element would get 200px and the rest would get 100px. If it was a bigger size it would get an even bigger portion of the remaining space.
+
+```
+.el--1 {
+  flex-grow: 3;
+}
+```
+
+<img src="noteImg/flexproperty--9.jpg">
+
+Normally though we set flex-grow: 1; on all the elements.
+
+### Flex property (shorthand for flex-basis, flex-shrink, flex-grow)
+
+In the real world we don't write: `flex-grow: 1;`. Instead we use this shorthand for all 3 properties. We write flex: 1.
+So best practice, we should in fact, never use one of the three defaults here individually, but always use the flex property.
+
+1. The first value is `flex-grow`
+
+```
+  flex: 0;
+```
+
+2. The second value is `flex-shrink`
+
+```
+  flex: 0 0;
+```
+
+3. The third value is `flex-basis`
+
+```
+  flex: 0 0 200px;
+```
