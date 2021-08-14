@@ -2532,3 +2532,132 @@ So best practice, we should in fact, never use one of the three defaults here in
 ```
   flex: 0 0 200px;
 ```
+
+## Lecture 11: Adding Flexbox to our Project.
+
+So let's go back to our project and give it a better width. This is the layout we used using floats. So now let's comment out our float code and fix it using the flexbox.
+
+### Adding flexbox to our navigation
+
+So first thing notice here without the floats how they naturally go back to being stacked on top of each other? Let's make them side by side.
+
+<img src="noteImg/Section 3 - Lecture 11/img--2.jpg">
+
+However what element should be the flex container? It needs to be the parent of h1 and nav which would be our main-header.
+
+```
+.main-header {
+  display: flex;
+}
+```
+
+<img src="noteImg/Section 3 - Lecture 11/img--1.jpg">
+
+So this should put them side by side now. Let's fix them vertically because we want them vertically aligned. We use align-items.
+
+#### Align-items (vertically align)
+
+```
+  align-items: center;
+```
+
+There is no way to manually add some padding or some margin until its centered. So in this way it happens automatically which is a lot better.
+
+#### justify-content: space-between (horizontally align)
+
+<img src="noteImg/Section 3 - Lecture 11/img--3.jpg">
+This will take all the empty space and divide that as a space between them. Now they aren't stuck together. In case we have only two elements that means all the remaining space will stay between the both of the flex items.
+
+As a consequence though each of them gets pushed to one of the sides. This one is fixed. Let's move on to the next area.
+
+### Adding flexbox to author image and its paragraph
+
+<img src="noteImg/Section 3 - Lecture 11/img--4.jpg">
+So basically we want this text here to be back side by side with the image right?
+What would be the flex container for this section?
+
+<img src="noteImg/Section 3 - Lecture 11/img--5.jpg">
+The flex container should not be post-header because if we inspect it it targets all the other elements so it's not going to work. What should we do?
+
+If we were to set `.post-header { display: flex; }` this would be the resulting image.
+
+<img src="noteImg/Section 3 - Lecture 11/img--6.jpg">
+Now it looks very weird.
+
+#### create a new parent element for the img and p
+
+The solution is to create a parent container for these two elements.
+<img src="noteImg/Section 3 - Lecture 11/img--7.jpg">
+
+```
+.author-box {
+  display: flex;
+}
+```
+
+<img src="noteImg/Section 3 - Lecture 11/img--8.jpg">
+
+Immediately they are now side by side! Once again we need to vertically align it. Remove the margin-bottom from `.author` because having it makes it so the items aren't truly aligned. Add it to the author-box instead.
+
+```
+.author-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.author {
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+```
+
+<img src="noteImg/Section 3 - Lecture 11/img--9.jpg">
+
+### Adding flexbox to the li's
+
+So each of these li elements here are king of a mess right now. Let's check out the markup and we can do that here again right here. What we really want is to have the anchor and paragraph side by side with the image.
+
+What would be the parent container for these? We created a parent container in li's called `.related-posts` and what we are targeting inside are the classes `.related-link` and `.related-author`.
+
+```
+.related-post {
+  display: flex;
+}
+```
+
+#### Figure without the box
+
+So this is what it looks like after we added flex to related post. However now we have the problem where all three items in the li are flex items.
+<img src="noteImg/Section 3 - Lecture 11/img--10.jpg">
+Which is not what we want.
+
+#### Figure with the box
+
+<img src="noteImg/Section 3 - Lecture 11/img--11.jpg">
+
+However make sure to put them in the same container. Because we want these two to be in the same box that will be on the right side of the image. So by wrapping them inside of a div. It creates the box that we wanted.
+
+For example, look at the image below. The top is what we want. The other two are what happens if they aren't wrapped in a div element.
+
+<img src="noteImg/Section 3 - Lecture 11/img--12.jpg">
+
+They should all look like this instead.
+
+<img src="noteImg/Section 3 - Lecture 11/img--13.jpg">
+Now we just need to vertically align this once again.
+
+#### Now we need our spacing (gap)
+
+Because our related-post is a flex container. We can add the gap property to create space between the img and the li's
+
+```
+.related-post {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+```
+
+<img src="noteImg/Section 3 - Lecture 11/img--14.jpg">
