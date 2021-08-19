@@ -2856,3 +2856,150 @@ We can actually create space between the grid items and these are called `gutter
 Another term that is commonly used is called grid track. A grid track can be a row or also a column. So each of these are grid tracks and so in this example here we have two row tracks and three column tracks. We call these tracks because these concepts are a bit more about the space itself and not about the grid items.
 
 <img src="noteImg/Section 4 - Lecture 15/img--6.jpg">
+
+## Lecture 16: Sizing Grid Columns and Rows
+
+Most of the magic comes from a unit called `fr`. Using the `fr` unit here instead of pixels will allow us to very easily create flexible columns and flexible rows.
+
+So again, using pixels allows us to only give these tracks very rigid dimensions. For example:
+
+```
+grid-template-columns: 200px 200px 100px 100px;
+```
+
+So these here are always gonna be 200pixels no matter what, even if we size the page they will stay the same. So at even some point it even over float the container.
+
+<img src="noteImg/Section 4 - Lecture 16/img--1.jpg">
+If you look in the bottom corner you can see how it over floats the container when resized.
+
+### Using the fr unit (grid-template-columns)
+
+So for our first example of resizing this `.el--3`.
+<img src="noteImg/Section 4 - Lecture 16/img--2.jpg">
+This is the third column right?
+
+```
+grid-template-columms: 200px 200px 100px 100px;
+```
+
+<img src="noteImg/Section 4 - Lecture 16/img--3.jpg">
+
+So instead of specifying a fixed pixel value. Let's specify `1fr`. Which stands for `fractional or just fraction`.
+
+```
+grid-template-columms: 200px 200px 1fr 100px;
+```
+
+<img src="noteImg/Section 4 - Lecture 16/img--4.jpg">
+<img src="noteImg/Section 4 - Lecture 16/img--5.jpg">
+
+Now you see that it occupys more space and when it expanded it always keeps expanding.
+
+```
+grid-template-columms: 200px 200px 1fr 1fr;
+```
+
+What happens if we set the column right next to it to 1fr? They ended up becoming the exact same size because they have the exact same value here for the fr unit.
+
+#### Try this on your own
+
+I want you to actually think about how we can create a grid where all the columns are the same width;
+
+```
+grid-template-columms: 1fr 1fr 1fr 1fr;
+```
+
+Now no matter what they will always be the same size. If we remove one of the columns:
+
+<img src="noteImg/Section 4 - Lecture 16/img--6.jpg">
+
+They will end up with only three columns, but they still have the same size.
+
+What happens if we change one of them to 2fr?
+
+<img src="noteImg/Section 4 - Lecture 16/img--7.jpg">
+
+They take up a larger potion of the available space.
+Almost double the space. So now the space is basically divided into five fractions. So 2 + 1 + 1 + 1 = 5 fractions. The first column gets 2 of them and the remaining ones get one each. The same can be said if we keep increasing the size here. If we gave it 3fr it would take up half the space since the other items only receive 1fr of the space.
+
+### auto
+
+<img src="noteImg/Section 4 - Lecture 16/img--8.jpg">
+
+Another trick we can use is `auto` keyword. If we say auto for example on the fourth colum, then it will only take exactly the size that is necessary to fill it's content. Many times in practice this is actually exactly what we need for one of the columns.
+
+```
+grid-template-columms: 1fr 1fr 1fr auto;
+```
+
+### easier way to write grid-template-columns
+
+So CSS Grid introduced a repeat function where we can simply write `repeat` then open parenthesis, and then write how many columns you want and how large they should be.
+
+```
+grid-template-columns: repeat(4, 1fr);
+```
+
+is the same as
+
+```
+grid-template-columms: 1fr 1fr 1fr 1fr;
+```
+
+#### Implicit row
+
+If we were to set it to 3 instead of 4 we would get another row.
+
+```
+grid-template-columns: repeat(3, 1fr);
+```
+
+The row at the bottom is called an implicit row:
+
+<img src="noteImg/Section 4 - Lecture 16/img--9.jpg">
+
+That's because the first two rows we actually did specify some sizes for them right? So we explicitly defined these two rows while this third one here was basically just added automatically because we ran out of space in the grid we defined.
+
+We do have a way of styling implicit rows but that is outside the scope of this course. :(
+
+### Using fr on grid-template-rows
+
+First in order to do this, we actually first need to give the container a height because otherwise there is not really anything to fill right?
+
+<img src="noteImg/Section 4 - Lecture 16/img--10.jpg">
+
+So again if we set our grid-template-row to:
+
+```
+  grid-template-rows: 1fr 1fr;
+```
+
+There wouldnt be any space to fill it but there is space left because this example only works because we already defined a height of 150px on one of the elements.
+
+```
+.el--3 {
+  height: 150px;
+}
+```
+
+Therefore the entire row will be 150px and so therefore that is 1fr. The height of a track is defined by its tallest element. The second track will get the same height because it also has 1fr.
+
+What happens if you remove the height from `.el--3`?
+
+<img src="noteImg/Section 4 - Lecture 16/img--11.jpg">
+So now all these elements are the same size because they are still `1fr`.
+
+Now let's define the height for the container and give it a height of 600px.
+
+```
+height: 600px;
+```
+
+<img src="noteImg/Section 4 - Lecture 16/img--12.jpg">
+The `fr` unit is actually more helpful on columns.
+
+#### auto for rows
+
+Auto also works for rows: Just like before it only takes the space it needs and all the remaining space is automatically filled up by this one here.
+
+<img src="noteImg/Section 4 - Lecture 16/img--13.jpg">
