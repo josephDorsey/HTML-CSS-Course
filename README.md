@@ -2724,3 +2724,81 @@ We simply set the align items property on the parent to something else. So on th
 ## Lecture 13: Challenge #3
 
 Change converse ad to flexbox instead of floats.
+
+## Lecture 14: Introduction to CSS Grid
+
+The best way to learn this is through isolation like we did with the `flexbox.html`.
+
+In this example we will have two containers filled with div elements.
+
+<img src="noteImg/Section 4 - Lecture 14 /img--1.jpg">
+For now for this example we are going to hide the other container. If you give it a display: none; then it will disappear.
+
+<img src="noteImg/Section 4 - Lecture 14 /img--2.jpg">
+
+So CSS Grid is right now the most modern way of building layouts and it's also the most complete one. Setting up a simple grid takes less than a minute let's quickly do that.
+
+### Grid container and grid-items
+
+Much like flexbox we have flexbox container and flex items. For grid we have grid container and grid items.In order to make a container a grid you have to give it a `display: grid`
+
+Visually nothing happens yet once you set it to grid. WE need to actually define our two dimensional layout. So basically our columns and our rows.
+
+#### Grid-template-columns
+
+So we use the property called grid-template-columns, and now here we can define as many width values as we want and then for each of these values, one column will be created.
+
+For example if we give it two width values like this:
+
+```
+grid-template-columns: 250px 150px
+```
+
+<img src="noteImg/Section 4 - Lecture 14 /img--3.jpg">
+The grid will generate two columns. One with a width of 250px and another width of 150px.
+
+So when we start creating some columns, then all the elements will be displayed in columns and rows. And so as many rows will be created as necessary. Let's add some more columns here.
+
+Let's say we wanted a 4x2 grid, so a grid with 4 columns and 2 lines.
+
+```
+grid-template-columns: 200px 200px 100px 100px;
+```
+
+<img src="noteImg/Section 4 - Lecture 14 /img--4.jpg">
+Now this creates 4 columns with 2 lines. Right now we have 8 elements inside if we were to add another it would simply be created on a 3rd line.
+
+<img src="noteImg/Section 4 - Lecture 14 /img--5.jpg">
+
+If you look closely, just like in flexbox the elements stretch across the entire cell. So basically across the height and the width that we defined for each cell.
+
+For example `.el--3` has a height of 150px; Therefore all the elements for that row will have that height. So in order to accommodate for that height, and all of these elements will then stretch as far as they need to basically fill the entire row.
+We can also increase the size of these rows to make them as tall as we want.
+
+```
+grid-template-rows: 300px 200px;
+```
+
+<img src="noteImg/Section 4 - Lecture 14 /img--6.jpg">
+Notice here how `.el--3` even though the size of the rows increased it still only takes up the space in which it was given. So in this case 150px.
+
+### How to specify a gap in css grid
+
+Just like in flexbox we will use the `gap` property. It used to be `grid-gap` but it was changed.
+
+<img src="noteImg/Section 4 - Lecture 14 /img--7.jpg">
+```
+gap: 30px;
+```
+
+### What we cant do in flexbox, but we can do in Grid
+
+We can actually define separate values for the column and for the rows.
+
+```
+column-gap: 30px;
+row-gap: 60px;
+```
+
+<img src="noteImg/Section 4 - Lecture 14 /img--8.jpg">
+Now we have more space. That is very fundamentals of CSS grid.
