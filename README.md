@@ -2731,10 +2731,11 @@ The best way to learn this is through isolation like we did with the `flexbox.ht
 
 In this example we will have two containers filled with div elements.
 
-<img src="noteImg/Section 4 - Lecture 14 /img--1.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--1.jpg">
+
 For now for this example we are going to hide the other container. If you give it a display: none; then it will disappear.
 
-<img src="noteImg/Section 4 - Lecture 14 /img--2.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--2.jpg">
 
 So CSS Grid is right now the most modern way of building layouts and it's also the most complete one. Setting up a simple grid takes less than a minute let's quickly do that.
 
@@ -2744,7 +2745,7 @@ Much like flexbox we have flexbox container and flex items. For grid we have gri
 
 Visually nothing happens yet once you set it to grid. WE need to actually define our two dimensional layout. So basically our columns and our rows.
 
-#### Grid-template-columns
+### Grid-template-columns
 
 So we use the property called grid-template-columns, and now here we can define as many width values as we want and then for each of these values, one column will be created.
 
@@ -2754,7 +2755,8 @@ For example if we give it two width values like this:
 grid-template-columns: 250px 150px
 ```
 
-<img src="noteImg/Section 4 - Lecture 14 /img--3.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--3.jpg">
+
 The grid will generate two columns. One with a width of 250px and another width of 150px.
 
 So when we start creating some columns, then all the elements will be displayed in columns and rows. And so as many rows will be created as necessary. Let's add some more columns here.
@@ -2765,28 +2767,32 @@ Let's say we wanted a 4x2 grid, so a grid with 4 columns and 2 lines.
 grid-template-columns: 200px 200px 100px 100px;
 ```
 
-<img src="noteImg/Section 4 - Lecture 14 /img--4.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--4.jpg">
+
 Now this creates 4 columns with 2 lines. Right now we have 8 elements inside if we were to add another it would simply be created on a 3rd line.
 
-<img src="noteImg/Section 4 - Lecture 14 /img--5.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--5.jpg">
 
 If you look closely, just like in flexbox the elements stretch across the entire cell. So basically across the height and the width that we defined for each cell.
 
 For example `.el--3` has a height of 150px; Therefore all the elements for that row will have that height. So in order to accommodate for that height, and all of these elements will then stretch as far as they need to basically fill the entire row.
+
+### Grid-template-rows
+
 We can also increase the size of these rows to make them as tall as we want.
 
 ```
 grid-template-rows: 300px 200px;
 ```
 
-<img src="noteImg/Section 4 - Lecture 14 /img--6.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--6.jpg">
 Notice here how `.el--3` even though the size of the rows increased it still only takes up the space in which it was given. So in this case 150px.
 
 ### How to specify a gap in css grid
 
 Just like in flexbox we will use the `gap` property. It used to be `grid-gap` but it was changed.
 
-<img src="noteImg/Section 4 - Lecture 14 /img--7.jpg">
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--7.jpg">
 ```
 gap: 30px;
 ```
@@ -2800,5 +2806,53 @@ column-gap: 30px;
 row-gap: 60px;
 ```
 
-<img src="noteImg/Section 4 - Lecture 14 /img--8.jpg">
-Now we have more space. That is very fundamentals of CSS grid.
+<img src="noteImg/Section 4 - Lecture 14 (Grid)/img--8.jpg">
+
+Now we have more space. Ok nice we finished learning the fundamentals of CSS grid.
+
+## Lecture 15: A CSS Grid Overview
+
+### What is a CSS Grid?
+
+A set of CSS properties for building 2-dimensional layouts.
+
+The main idea behind CSS Grid is that we divide a container element into rows and columns that can be filled with its child element.
+
+In two-dimensional contexts, CSS Grid allows us to write less nested HTML and easier to read CSS
+
+One common misconception that many beginners have is that CSS Grid is meant to replace flexbox. However, this is really not the case.
+
+Instead flexbox and CSS grid work together perfectly. You use them in different situations. So when you need a one dimensional layout, then you simply reach for flexbox. But if you need two dimensional layout, then you simply use Grid.
+
+### Basic CSS Grid terminology
+
+<img src="noteImg/Section 4 - Lecture 15/img--1.jpg">
+
+So now let's introduce the concept of Grid lines:
+
+<img src="noteImg/Section 4 - Lecture 15/img--2.jpg">
+These lines basically divide the grid and separate the columns and the rows. And as you can see, these grid lines are numbered from one to the number of columns plus one, and the number of rows plus one.
+
+So if we have four columns and then we have five grid lines for the columns.
+
+If we have two rows then we have three grid lines for the rows.
+
+These numbers are actually important because we can use them to place a grid item exactly in one place in the grid where we want it to be.
+
+Now the intersection of all these grid lines, so both the grid lines for the columns and the rows then creates all these areas into which we can place our grid items.
+
+And these areas are called the grid cells. So grid cells are always created, but they don't always need to be filled. So in this case:
+
+<img src="noteImg/Section 4 - Lecture 15/img--3.jpg">
+
+We only have 5 grid items, but there are still six cells. Simply because this is a grid with 3 columns and two rows. 3x2 is 6.
+
+<img src="noteImg/Section 4 - Lecture 15/img--4.jpg">
+
+We can actually create space between the grid items and these are called `gutters or gaps`. So remember we use gap property or also row gap/column gap property. So technically these are called `Gutters`.
+
+<img src="noteImg/Section 4 - Lecture 15/img--5.jpg">
+
+Another term that is commonly used is called grid track. A grid track can be a row or also a column. So each of these are grid tracks and so in this example here we have two row tracks and three column tracks. We call these tracks because these concepts are a bit more about the space itself and not about the grid items.
+
+<img src="noteImg/Section 4 - Lecture 15/img--6.jpg">
