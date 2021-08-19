@@ -2572,22 +2572,22 @@ As a consequence though each of them gets pushed to one of the sides. This one i
 
 ### Adding flexbox to author image and its paragraph
 
-<img src="noteImg/Section 3 - Lecture 11/img--4.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--4.jpg">
 So basically we want this text here to be back side by side with the image right?
 What would be the flex container for this section?
 
-<img src="noteImg/Section 3 - Lecture 11/img--5.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--5.jpg">
 The flex container should not be post-header because if we inspect it it targets all the other elements so it's not going to work. What should we do?
 
 If we were to set `.post-header { display: flex; }` this would be the resulting image.
 
-<img src="noteImg/Section 3 - Lecture 11/img--6.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--6.jpg">
 Now it looks very weird.
 
 #### create a new parent element for the img and p
 
 The solution is to create a parent container for these two elements.
-<img src="noteImg/Section 3 - Lecture 11/img--7.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--7.jpg">
 
 ```
 .author-box {
@@ -2595,7 +2595,7 @@ The solution is to create a parent container for these two elements.
 }
 ```
 
-<img src="noteImg/Section 3 - Lecture 11/img--8.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--8.jpg">
 
 Immediately they are now side by side! Once again we need to vertically align it. Remove the margin-bottom from `.author` because having it makes it so the items aren't truly aligned. Add it to the author-box instead.
 
@@ -2612,7 +2612,7 @@ Immediately they are now side by side! Once again we need to vertically align it
 }
 ```
 
-<img src="noteImg/Section 3 - Lecture 11/img--9.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--9.jpg">
 
 ### Adding flexbox to the li's
 
@@ -2629,22 +2629,22 @@ What would be the parent container for these? We created a parent container in l
 #### Figure without the box
 
 So this is what it looks like after we added flex to related post. However now we have the problem where all three items in the li are flex items.
-<img src="noteImg/Section 3 - Lecture 11/img--10.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--10.jpg">
 Which is not what we want.
 
 #### Figure with the box
 
-<img src="noteImg/Section 3 - Lecture 11/img--11.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--11.jpg">
 
 However make sure to put them in the same container. Because we want these two to be in the same box that will be on the right side of the image. So by wrapping them inside of a div. It creates the box that we wanted.
 
 For example, look at the image below. The top is what we want. The other two are what happens if they aren't wrapped in a div element.
 
-<img src="noteImg/Section 3 - Lecture 11/img--12.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--12.jpg">
 
 They should all look like this instead.
 
-<img src="noteImg/Section 3 - Lecture 11/img--13.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--13.jpg">
 Now we just need to vertically align this once again.
 
 #### Now we need our spacing (gap)
@@ -2660,4 +2660,67 @@ Because our related-post is a flex container. We can add the gap property to cre
 }
 ```
 
-<img src="noteImg/Section 3 - Lecture 11/img--14.jpg">
+<img src="noteImg/Section 4 - Lecture 11/img--14.jpg">
+
+## Lecture 12: Building a Simple Flexbox layout
+
+All we need to do now is to put the article side-by-side with the related posts. Remember this should have a width of 300px and a gap of 75px.
+
+What is going to be our flex containers?
+We need to create a new element that will be the container element for article and aside.
+
+```
+<div class="row">
+  <article></article>
+  <aside></aside>
+</div>
+```
+
+```
+.row {
+  display: flex;
+}
+```
+
+<img src="noteImg/Section 4 - Lecture 12 /img--1.jpg">
+
+Now it should be on the side. Let's inspect the dev tools. We want our width to be 300px but Flexbox seems to have created its own width automatically. Use shorthand to correct this.
+
+```
+aside {
+
+flex: 0 0 300px;
+}
+
+article {
+  flex: 0 0 825px;
+}
+```
+
+Now let's add that gap in between.
+
+Target the flex container `.row` and give it a `gap: 75px`.
+
+<img src="noteImg/Section 4 - Lecture 12 /img--2.jpg">
+
+Having to do all this math happens to defeat the purpose of flexbox. So what we do in a situation like this is to simply set flex to one which will automatically allow this element to grow as much as it can in the available space.
+
+If we give it a save, the element should actually look the same as before. It's still 825px wide. Because that is simply the space that is available for it.
+
+### Why did the aside article grow to the bottom?
+
+Remember how the default value for a line items is stretched? So basically if we don't define a line items then automatically all the elements will stretch as far as they can.
+
+<img src="noteImg/Section 4 - Lecture 12 /img--3.jpg">
+
+In this case the largest element is article. So then by default, all other items grow as much as they can in order to have the same size. So you see, they're perfectly aligned here at the bottom.
+
+### What happens if we don't want that to happen?
+
+We simply set the align items property on the parent to something else. So on the flex container `.row`. Let's say `align-items: flex-start`. So now it's back to only occupying vertically the space that is necessary without growing as much as it can.
+
+<img src="noteImg/Section 4 - Lecture 12 /img--4.jpg">
+
+## Lecture 13: Challenge #3
+
+Change converse ad to flexbox instead of floats.
