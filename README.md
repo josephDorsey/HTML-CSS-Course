@@ -3003,3 +3003,180 @@ The `fr` unit is actually more helpful on columns.
 Auto also works for rows: Just like before it only takes the space it needs and all the remaining space is automatically filled up by this one here.
 
 <img src="noteImg/Section 4 - Lecture 16/img--13.jpg">
+
+## Lecture 17: Placing and Spanning Grid Items
+
+### How to place a certain grid item into another grid cell
+
+We are going to move element 8 into element 2 grid cell
+
+<img src="noteImg/Section 4 - Lecture 17/img--1.jpg">
+<img src="noteImg/Section 4 - Lecture 17/img--2.jpg">
+
+Notice here in our `dev tools` it tells use that `.el--8` occupies `Row 2/ Column 4`. `el--2` occupies `Row 1/Column 2`.
+
+```
+.el--8 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+```
+
+So here with `grid-column` we specify the column we want it to start at and where it needs to end. So in this case above it is stating `Start at 2 end 3`. As with the `grid-row` it is stating `Start at row 1 end before row 2`
+
+<img src="noteImg/Section 4 - Lecture 17/img--3.jpg">
+This is before we added the `grid-row`. See how it went and created a implicit row? It still went to the second column.
+
+<img src="noteImg/Section 4 - Lecture 17/img--4.jpg">
+
+So remember `grid-template-columns/grid-template-rows` are used for the `grid container`.
+
+`grid-column/grid-row` are used for the grid items.
+
+### Pause video
+
+Put el--2 where el--4 is.
+
+```
+.el--2 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+```
+
+Actually if the second value is just one more than the first we can omit it. So we can do this and it'll be in the same spot.
+
+```
+.el--2 {
+  grid-column: 1;
+  grid-row: 2;
+}
+```
+
+<img src="noteImg/Section 4 - Lecture 17/img--5.jpg">
+
+What happens if we specify a value that is not just plus one?
+
+```
+  grid-column: 1/3;
+```
+
+So now it spans across two cells.
+
+<img src="noteImg/Section 4 - Lecture 17/img--6.jpg">
+
+So it can get a little tricky doing math here. For example 1 /4 would span across 3 cells (why not 4?)
+
+Instead of having to do the math. We can actually instead say `span 3`. So instead of specifying the final value of the grid line, we can simply say, start at one and then span across three cells.
+
+```
+  grid-column: 1 / span 3;
+```
+
+Let's keep working with this situation where we want one grid item to span all the way to the end of the container.
+
+In some situations, we might not even know how many columns there are in a grid, or we simply might not want to think about how many cells we need to span. So in these situations there is a very nice trick that we can use instead of manually spanning.
+
+So we could instead write it like this:
+
+```
+grid-column: 1 / -1;
+```
+
+<img src="noteImg/Section 4 - Lecture 17/img--7.jpg">
+
+Why this works is because when you look at the top of the grid the numbers increase from 1 - 5. Looking at the bottom it goes from -5 to -1 basically the opposite direction.
+
+So what this means is basically each of these grid lines actually has two numbers.
+
+### spanning rows
+
+Let's experiment with number 6 or `.el--6`. So lets say we want it to start. For this example we need to turn off .el--2's grid span because its messing with this next example. However back to it.
+
+#### el--6
+
+```
+.el--6 {
+  grid-row: 3 / 5;
+}
+```
+
+Now we can see that the new row was inserted!
+<img src="noteImg/Section 4 - Lecture 17/img--8.jpg">
+
+#### el--8
+
+We can also expand the row length of this element by increasing it from `1 / 2` to `1 / 3`.
+
+```
+.el--8 {
+  grid-row: 1 / 3;
+}
+```
+
+<img src="noteImg/Section 4 - Lecture 17/img--9.jpg">
+
+As expected it now it will span these two grid cells across these two rows.
+
+## Lecture 18: Aligning Grid Items and Tracks
+
+So now let's work on grid container 2. Let's enable it again.
+This is just for demo.
+
+### aligning grid tracks inside grid container
+
+Kind of like flexbox we use `justify-content` and `align-content`.
+Now the it is completely centered inside the container.
+
+```
+  justify-content: center;
+  align-content: center;
+```
+
+<img src="noteImg/Section 4 - Lecture 18/img--1.jpg">
+
+Now this makes sense because the grid container is actually bigger than the grid itself. So the grid itself is only the some of these width of columns plus the gap.
+
+### aligning grid items inside cells
+
+What do you think will happen if we align the items inside of the cell?
+
+```
+align-items: center;
+```
+
+<img src="noteImg/Section 4 - Lecture 18/img--2.jpg">
+
+The grid items are centered vertically because that is what align is always all about.
+
+We can do the same horizontally.
+And for that is always justify.
+
+<img src="noteImg/Section 4 - Lecture 18/img--3.jpg">
+Now we should see a tiny square around the content.
+The default value for `justify-items` is `stretch`.
+
+### Review
+
+#### Aligning Tracks Inside Container
+
+So if we want to align the tracks inside the container. We use `justify-content` and `align-content`.
+
+#### Aligning Items inside container
+
+If we want to align items INSIDE cells (moving items around inside cells). We would use `align-items` and `justify-items`.
+
+### Overwrite the cells individually
+
+Just like in flexbox, we have align self which will then overwrite the align items property that we have up here.
+
+```
+align-self: end
+```
+
+In CSS grid we can overwrite the justify items (so horizontally)
+
+```
+align-self: end;
+justify-self: end;
+```
