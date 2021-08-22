@@ -3180,3 +3180,92 @@ In CSS grid we can overwrite the justify items (so horizontally)
 align-self: end;
 justify-self: end;
 ```
+
+## Lecture 19: Building a Simple CSS Grid Layout
+
+Let's deactivate some of the code we used for the Flexbox layout.
+
+So our grid container for this will be our `.container` we have used before.
+
+```
+.container {
+  display: grid;
+}
+```
+
+How many columns do we have? Right now just two. One for the article and one for the aside.
+Do you remember the size of the aside? It was 300px;
+And for the remainder of the size we can just put 1fr.
+
+```
+.container {
+  grid-template-columns: 1fr 300px;
+}
+```
+
+But watch what the result is now:
+
+<img src="noteImg/Section 4 - Lecture 19/img--1.jpg">
+<img src="noteImg/Section 4 - Lecture 19/img--2.jpg">
+<img src="noteImg/Section 4 - Lecture 19/img--3.jpg">
+
+So we do indeed have a grid with 2 columns. But our items are not exactly where we want them to be. Right?
+So let's go ahead and fix that. We want the main-header to not simply be this one cell right? But instead we want it to span all the way to the end right?
+
+So we want it to be in the first column and have it span to the end.
+
+```
+.main-header {
+  /* Other ways to rewrite this */
+  grid-column: 1 / 3;
+  grid-column: 1 / span 2;
+  grid-column: 1 / -1;
+}
+```
+
+So now it looks correct after putting it in the right spot.
+<img src="noteImg/Section 4 - Lecture 19/img--4.jpg">
+Let's also fix the footer.
+
+<img src="noteImg/Section 4 - Lecture 19/img--5.jpg">
+Give it the same treatment. It's only extending to this one row.
+
+```
+footer {
+
+grid-column: 1 / -1;
+}
+```
+
+<img src="noteImg/Section 4 - Lecture 19/img--6.jpg">
+This page is almost ready. We just need to fix the gap that used to be there before which was 75pixels.
+```
+.container {
+  column-gap: 75px;
+}
+```
+So now we want to fix the spacings on the container. Stuff like margin and padding should be included in the container. Let's remove all the margin from the elements. Good the space is now gone we can easily bring it back with just one line of CSS. Which is row-gap of 60 pixels.
+
+Doing this is a lot cleaner and really a lot better for maintaining your code in the long run.
+
+Now we just need to finish the aside element here. Now it is back to stretching itself all the way to the bottom. We use align-items.
+
+```
+.container {
+
+align-items: start;
+}
+```
+
+<img src="noteImg/Section 4 - Lecture 19/img--7.jpg">
+Awesome, now our project looks beautiful!
+
+## Challenge 3: Using Grid for Converse
+
+His take on the challenge
+
+1. remove the div container
+2. remove all traces of flexbox in the CSS code
+3. attach `grid-template-columns: 250px (for the image) 1fr 1fr` to the `product container`. I made the mistake of `auto auto` instead of `1fr 1fr`. Doing so made it so i had to add padding to the li elements when it wasnt needed due to 1fr being more respectable to the space.
+
+4. So the trick here was in order to (have the picture remain 250px) give the column the exact same size as the image. And then everything else simply happened automatically.
